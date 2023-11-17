@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-import { red } from '@mui/material/colors'
+import { red, grey } from '@mui/material/colors'
 
 // Create a theme instance.
 const theme = createTheme({
@@ -10,11 +10,10 @@ const theme = createTheme({
     secondary: {
       main: '#8E8FFA',
     },
-    // text: {
-    //   primary: "",
-    //   secondary: "",
-    //   disabled:""
-    // },
+    text: {
+      primary: grey[900],
+      secondary: grey[500],
+    },
     error: {
       main: red.A400,
     },

@@ -62,6 +62,7 @@ export default function Register() {
             margin: 'auto',
             padding: '1.5rem 2rem',
           }}
+          elevation={0}
           variant="outlined"
         >
           <Box
@@ -139,7 +140,7 @@ export default function Register() {
                     control={
                       <Checkbox value="allowExtraEmails" color="primary" />
                     }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
+                    label="Remember me"
                   />
                 </Grid>
               </Grid>
@@ -156,6 +157,7 @@ export default function Register() {
                   <Link href="/login" variant="body2">
                     Already have an account?
                   </Link>
+                  
                 </Grid>
               </Grid>
             </Box>

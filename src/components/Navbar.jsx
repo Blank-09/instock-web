@@ -12,8 +12,9 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import InventoryIcon from '@mui/icons-material/Inventory'
+import { Link } from 'react-router-dom'
 
-const pages = ['Products', 'Pricing', 'Blog']
+const pages = ['Products', 'Login', 'Register']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
 function Navbar() {
@@ -48,14 +49,14 @@ function Navbar() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              // fontFamily: 'monospace',
+              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            Instock
+            INSTOCK
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -99,7 +100,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -111,16 +112,21 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            INSTOCK
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: '#000', display: 'block' }}
               >
-                {page}
+                <Link
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                  to={`/${page.toLocaleLowerCase()}`}
+                >
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>
@@ -128,7 +134,10 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://mui.com/static/images/avatar/2.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -146,6 +155,7 @@ function Navbar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              color="inherit"
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
