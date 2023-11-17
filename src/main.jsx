@@ -9,12 +9,28 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import theme from './theme'
 import App from './App'
+import Register from './pages/Register'
+import Login from './pages/Login'
+import Navbar from './components/Navbar'
 
 // Router
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <>
+        <Navbar />
+        <App />
+      </>
+    ),
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 ])
 
