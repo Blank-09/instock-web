@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import '../assets/sideBar.css'
 import {
   List,
   ListItem,
@@ -86,17 +85,19 @@ export default function SideBar() {
                   handlSelectedComponent(event, index)
                   navigateTo(comp.title.toLocaleLowerCase())
                 }}
-                // selected={}
                 selected={
                   index === selected &&
                   currentPage === '/' + comp.title.toLowerCase()
                 }
                 sx={{
                   mb: 3,
-                  borderLeft: 0,
-                  borderColor: 'primary.main',
+                  border: '1px solid transparent',
                   ml: 1,
                   pr: 4,
+                  '&:hover': {
+                    backgroundColor: 'white',
+                    border: '1px solid #190482',
+                  },
                 }}
               >
                 <ListItemIcon>

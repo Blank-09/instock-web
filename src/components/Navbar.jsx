@@ -37,7 +37,7 @@ function Navbar() {
   }
 
   return (
-    <AppBar position="static" color="secondary" variant="outlined">
+    <AppBar position="static" color="primary" variant="outlined">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <InventoryIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -114,8 +114,8 @@ function Navbar() {
           >
             INSTOCK
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}> */}
+          {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -128,12 +128,24 @@ function Navbar() {
                   {page}
                 </Link>
               </Button>
-            ))}
-          </Box>
+            ))} */}
+          {/* </Box> */}
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: 'none',
+                md: 'flex',
+                flexDirection: 'row-reverse',
+              },
+            }}
+          >
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, border: 2, borderColor: '#fff' }}
+              >
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/2.jpg"
