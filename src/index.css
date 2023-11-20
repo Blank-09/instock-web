@@ -1,6 +1,11 @@
-#root {
+/* #root {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: #fff;
+} */
+
+* {
+  margin: 0px;
+  padding: 0px;
 }
