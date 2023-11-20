@@ -12,16 +12,20 @@ import App from './App'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Navbar from './components/Navbar'
-
+import SideBar from './components/SideBar'
+import Home from './pages/Home'
 // Router
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <>
+      <div>
         <Navbar />
-        <App />
-      </>
+        <div style={{ display: 'flex' }}>
+          <SideBar />
+          <Home />
+        </div>
+      </div>
     ),
   },
   {

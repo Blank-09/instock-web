@@ -37,7 +37,7 @@ function Navbar() {
   }
 
   return (
-    <AppBar position="static" color="transparent" variant="outlined">
+    <AppBar position="static" color="secondary" variant="outlined">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <InventoryIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

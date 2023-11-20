@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
-const App = () => {
+const Home = () => {
   return (
     <Box
       sx={{
@@ -16,4 +16,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Home

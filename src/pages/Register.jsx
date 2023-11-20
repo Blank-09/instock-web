@@ -61,9 +61,9 @@ export default function Register() {
             maxWidth: '500px',
             margin: 'auto',
             padding: '1.5rem 2rem',
+            borderRadius: '5px',
           }}
-          elevation={0}
-          variant="outlined"
+          elevation={10}
         >
           <Box
             sx={{
@@ -76,7 +76,7 @@ export default function Register() {
               sx={{
                 m: 1,
                 p: 2,
-                bgcolor: 'secondary.main',
+                bgcolor: 'primary.main',
                 width: '100px',
                 height: '100px',
               }}
@@ -157,7 +157,6 @@ export default function Register() {
                   <Link href="/login" variant="body2">
                     Already have an account?
                   </Link>
-                  
                 </Grid>
               </Grid>
             </Box>
