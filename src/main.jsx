@@ -6,26 +6,26 @@ import CssBaseline from '@mui/material/CssBaseline'
 
 import { ThemeProvider } from '@mui/material/styles'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
 import theme from './theme'
 import App from './App'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Navbar from './components/Navbar'
 import SideBar from './components/SideBar'
-import Home from './pages/Home'
+import Welcome from './pages/WelcomePage'
 // Router
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <div>
-        <Navbar />
-        <div style={{ display: 'flex' }}>
-          <SideBar />
-          <Home />
-        </div>
-      </div>
+      // <div>
+      //   <Navbar />
+      //   <div style={{ display: 'flex' }}>
+      //     <SideBar />
+      //     <Home />
+      //   </div>
+      // </div>
+      <Welcome />
     ),
   },
   {

@@ -1,6 +1,15 @@
-#root {
+/* #root {
   display: flex;
   flex-direction: column;
   height: 100vh;
+<<<<<<< HEAD
   background-color: #ededed;
+=======
+  background-color: #fff;
+} */
+
+* {
+  margin: 0px;
+  padding: 0px;
+>>>>>>> f2e1dea019b59c9e9cf359640f3d7ff6d3bd2604
 }
