@@ -82,13 +82,10 @@ export default function SideBar() {
             <Box width="100%">
               <ListItemButton
                 onClick={(event) => {
-                  handlSelectedComponent(event, index)
-                  navigateTo(comp.title.toLocaleLowerCase())
+                  handlSelectedComponent(event, '/' + comp.title.toLowerCase())
+                  navigateTo('/' + comp.title.toLowerCase())
                 }}
-                selected={
-                  index === selected &&
-                  currentPage === '/' + comp.title.toLowerCase()
-                }
+                selected={currentPage === '/' + comp.title.toLowerCase()}
                 sx={{
                   my: 3,
                   border: '1px solid transparent',
@@ -103,19 +100,20 @@ export default function SideBar() {
                 <ListItemIcon>
                   <IconButton>{comp.component}</IconButton>
                 </ListItemIcon>
-                {/* <Link
-                  to={"" + comp.title.toLocaleLowerCase()}
-                  className="router-link"
-                > */}
                 <ListItemText
                   primary={comp.title}
                   primaryTypographyProps={{
                     fontSize: 'medium',
-                    fontWeight: selected === index ? 'bold' : '',
-                    color: selected === index ? 'primary.main' : 'inherit',
+                    fontWeight:
+                      currentPage === '/' + comp.title.toLowerCase()
+                        ? 'bold'
+                        : '',
+                    color:
+                      currentPage === '/' + comp.title.toLowerCase()
+                        ? 'primary.main'
+                        : 'inherit',
                   }}
                 />
-                {/* </Link> */}
               </ListItemButton>
             </Box>
           </ListItem>
