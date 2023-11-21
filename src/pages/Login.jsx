@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -13,7 +13,8 @@ import Paper from '@mui/material/Paper'
 import { useNavigate } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
-import { Home } from '@mui/icons-material'
+import { Home, Message } from '@mui/icons-material'
+import { red } from '@mui/material/colors'
 
 function Copyright(props) {
   return (
@@ -41,6 +42,7 @@ function Copyright(props) {
 
 export default function Login() {
   const navigate = useNavigate()
+  const [message, setMessage] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -48,7 +50,18 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     })
-    navigate('/home')
+    if (
+      data.get('email') == 'skavin@gmail.com' &&
+      data.get('password') == '1234' &&
+      data.has('allowExtraEmails')
+    ) {
+      navigate('/home')
+    } else if (data.get('allowExtraEmails') === 'off') {
+      setMessage('Accept out terms and conditions')
+    } else {
+      setMessage('Invalid Username or Password')
+    }
+    console.log(data.get)
   }
 
   return (
@@ -102,6 +115,9 @@ export default function Login() {
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
+              <Typography variant="subtitle2" color={'red'} paddingY={3}>
+                {message}
+              </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -127,7 +143,11 @@ export default function Login() {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
+                      <Checkbox
+                        value="allowExtraEmails"
+                        color="primary"
+                        required
+                      />
                     }
                     label="Remember me"
                   />

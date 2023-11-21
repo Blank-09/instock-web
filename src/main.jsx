@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Navbar from './components/Navbar'
 import SideBar from './components/SideBar'
 import Welcome from './pages/WelcomePage'
+import Inventory from './pages/Inventory'
 // Router
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/inventory',
+    element: <Inventory />,
   },
 ])
 
