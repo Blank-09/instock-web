@@ -90,7 +90,7 @@ export default function SideBar() {
                   currentPage === '/' + comp.title.toLowerCase()
                 }
                 sx={{
-                  mb: 3,
+                  my: 3,
                   border: '1px solid transparent',
                   ml: 1,
                   pr: 4,

@@ -7,6 +7,8 @@ import Button from '@mui/material/Button'
 import InventoryIcon from '@mui/icons-material/Inventory'
 import { FaAmazon } from 'react-icons/fa'
 import { SiFlipkart } from 'react-icons/si'
+import { Link } from 'react-router-dom'
+
 function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -31,12 +33,13 @@ function ButtonAppBar() {
           >
             Contact Us
           </Button>
-          <Button
-            color="inherit"
-            style={{ fontSize: '13px', fontWeight: 'bold' }}
-          >
-            Login
-          </Button>
+          <Link to="/login">
+            <Button
+              style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}
+            >
+              Login
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
@@ -49,10 +52,10 @@ function Main() {
         display: 'flex',
         height: '91.6vh',
         width: '100%',
-        //background: '#F0F8FF',
-        background: 'rgb(216,217,222)',
-        background:
-          'linear-gradient(77deg, rgba(216,217,222,1) 0%, rgba(158,159,205,1) 100%)',
+        background: '#F0F8FF',
+        // background: 'rgb(216,217,222)',
+        // background:
+        //   'linear-gradient(77deg, rgba(216,217,222,1) 0%, rgba(158,159,205,1) 100%)',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -105,7 +108,12 @@ function Main() {
           variant="contained"
           style={{ marginRight: '20px', width: '100px', padding: '10px' }}
         >
-          Sign Up
+          <Link
+            style={{ color: 'inherit', textDecoration: 'none' }}
+            to={`/login`}
+          >
+            Sign Up
+          </Link>
         </Button>
         <Button variant="outlined" style={{ width: '150px', padding: '10px' }}>
           Request Demo

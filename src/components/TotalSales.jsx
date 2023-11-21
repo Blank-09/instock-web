@@ -76,23 +76,19 @@ export default function TotalSales() {
     },
   ]
   return (
-    <Paper
-      elevation={10}
-      style={{ marginLeft: '70px', borderRadius: '10px', marginRight: '20px' }}
-    >
+    <Paper elevation={10} style={{ marginLeft: '50px', borderRadius: '10px' }}>
       <Box
         sx={{
           margin: 3,
           bgcolor: 'white',
           borderRadius: 2,
-          marginLeft: 9,
-          padding: 3,
+          padding: 4,
         }}
       >
         <ApexCharts
           options={options}
           series={series}
-          height={300}
+          height={400}
           type="line"
           width="100%"
         />

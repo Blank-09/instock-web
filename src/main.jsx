@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import theme from './theme'
 import App from './App'
 import Register from './pages/Register'
+import Home from './pages/Home'
 import Login from './pages/Login'
 import Navbar from './components/Navbar'
 import SideBar from './components/SideBar'
@@ -17,16 +18,11 @@ import Welcome from './pages/WelcomePage'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      // <div>
-      //   <Navbar />
-      //   <div style={{ display: 'flex' }}>
-      //     <SideBar />
-      //     <Home />
-      //   </div>
-      // </div>
-      <Welcome />
-    ),
+    element: <Welcome />,
+  },
+  {
+    path: '/home',
+    element: <Home />,
   },
   {
     path: '/login',

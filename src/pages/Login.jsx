@@ -10,8 +10,10 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
+import { useNavigate } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
+import { Home } from '@mui/icons-material'
 
 function Copyright(props) {
   return (
@@ -38,6 +40,7 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function Login() {
+  const navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -45,6 +48,7 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     })
+    navigate('/home')
   }
 
   return (
@@ -135,12 +139,7 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                <Link
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                  to={`/register`}
-                >
-                  Register
-                </Link>
+                Login
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>

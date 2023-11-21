@@ -1,18 +1,15 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Navbar from './components/Navbar'
+import SideBar from './components/SideBar'
 
 const App = () => {
   return (
-    <Box
-      sx={{
-        display: 'grid',
-        placeItems: 'center',
-        height: '100%',
-      }}
-    >
-      <Typography variant="h1">Hello World</Typography>
-    </Box>
+    <div>
+      <Navbar />
+      <SideBar />
+    </div>
   )
 }
 
