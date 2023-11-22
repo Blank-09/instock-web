@@ -1,12 +1,11 @@
 import React from 'react'
 import { Card, Box, CardContent, Typography } from '@mui/material'
-import { useSpring, animated } from 'react-spring'
 
 const InfoCard = ({ card }) => {
-  const { icon, title, subTitle, mx, my, spring } = card
+  const { icon, title, subTitle, mx, my } = card
 
   return (
-    <animated.div style={spring}>
+    <div>
       <Card elevation={6} sx={{ mx, my, borderRadius: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }} pl={1}>
           <Box
@@ -43,7 +42,7 @@ const InfoCard = ({ card }) => {
           </CardContent>
         </Box>
       </Card>
-    </animated.div>
+    </div>
   )
 }
 

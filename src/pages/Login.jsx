@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -10,11 +10,8 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-import { useNavigate } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
-import { Home, Message } from '@mui/icons-material'
-import { red } from '@mui/material/colors'
 
 function Copyright(props) {
   return (
@@ -41,8 +38,6 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function Login() {
-  const navigate = useNavigate()
-  const [message, setMessage] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -50,18 +45,6 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     })
-    if (
-      data.get('email') == 'skavin@gmail.com' &&
-      data.get('password') == '1234' &&
-      data.has('allowExtraEmails')
-    ) {
-      navigate('/home')
-    } else if (data.get('allowExtraEmails') === 'off') {
-      setMessage('Accept out terms and conditions')
-    } else {
-      setMessage('Invalid Username or Password')
-    }
-    console.log(data.get)
   }
 
   return (
@@ -84,9 +67,9 @@ export default function Login() {
             maxWidth: '500px',
             margin: 'auto',
             padding: '1.5rem 2rem',
-            borderRadius: '5px',
           }}
-          elevation={10}
+          elevation={0}
+          variant="outlined"
         >
           <Box
             sx={{
@@ -99,7 +82,7 @@ export default function Login() {
               sx={{
                 m: 1,
                 p: 2,
-                bgcolor: 'primary.main',
+                bgcolor: 'secondary.main',
                 width: '100px',
                 height: '100px',
               }}
@@ -115,9 +98,6 @@ export default function Login() {
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
-              <Typography variant="subtitle2" color={'red'} paddingY={3}>
-                {message}
-              </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -143,11 +123,7 @@ export default function Login() {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox
-                        value="allowExtraEmails"
-                        color="primary"
-                        required
-                      />
+                      <Checkbox value="allowExtraEmails" color="primary" />
                     }
                     label="Remember me"
                   />
@@ -159,7 +135,12 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Login
+                <Link
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                  to={`/register`}
+                >
+                  Register
+                </Link>
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>

@@ -1,51 +1,10 @@
 import React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import InventoryIcon from '@mui/icons-material/Inventory'
 import { FaAmazon } from 'react-icons/fa'
 import { SiFlipkart } from 'react-icons/si'
 import { Link } from 'react-router-dom'
 
-function ButtonAppBar() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ backgroundColor: 'primary' }}>
-        <Toolbar>
-          <InventoryIcon
-            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-            color={'#fff'}
-            style={{ fontSize: '35px', marginRight: '20px' }}
-          />
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1 }}
-            style={{ fontSize: '25px' }}
-          >
-            InStocK
-          </Typography>
-          <Button
-            color="inherit"
-            style={{ fontSize: '13px', fontWeight: 'bold' }}
-          >
-            Contact Us
-          </Button>
-          <Link to="/login">
-            <Button
-              style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}
-            >
-              Login
-            </Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  )
-}
-function Main() {
+export default function Welcome() {
   return (
     <div
       style={{
@@ -53,9 +12,6 @@ function Main() {
         height: '91.6vh',
         width: '100%',
         background: '#F0F8FF',
-        // background: 'rgb(216,217,222)',
-        // background:
-        //   'linear-gradient(77deg, rgba(216,217,222,1) 0%, rgba(158,159,205,1) 100%)',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -148,14 +104,6 @@ function Main() {
         </p>
         <a href="#">Click here</a>
       </div>
-    </div>
-  )
-}
-export default function Welcome() {
-  return (
-    <div>
-      <ButtonAppBar />
-      <Main />
     </div>
   )
 }

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Grid } from '@mui/material'
-import { useSpring, animated } from 'react-spring'
 import InfoCard from '../components/InfoCard'
 import ViewInArRoundedIcon from '@mui/icons-material/ViewInArRounded'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReceiptRoundedIcon from '@mui/icons-material/ReceiptRounded'
 import TotalSales from '../components/TotalSales'
-import App from '../App'
 import Navbar from '../components/Navbar'
 import SideBar from '../components/SideBar'
 
@@ -16,17 +14,6 @@ const Home = () => {
   const [shipped, setShipped] = useState(0)
   const [delivered, setDelivered] = useState(0)
   const [invoice, setInvoice] = useState(0)
-
-  const animateIncrement = (setter, targetValue) => {
-    return useSpring({
-      from: { value: 0 },
-      to: { value: targetValue },
-      onFrame: (props) => {
-        setter(Math.round(props.value))
-      },
-      config: { duration: 30000000000 }, // Adjust the duration here (in milliseconds)
-    })
-  }
 
   useEffect(() => {
     setPicked(1256)
@@ -61,7 +48,7 @@ const Home = () => {
                   subTitle: picked,
                   mx: 3,
                   my: 0,
-                  spring: animateIncrement(setPicked, 1256),
+                  // spring: animateIncrement(setPicked, 1256),
                 }}
               />
             </Grid>
@@ -73,7 +60,7 @@ const Home = () => {
                   subTitle: shipped,
                   mx: 3,
                   my: 0,
-                  spring: animateIncrement(setShipped, 12),
+                  // spring: animateIncrement(setShipped, 12),
                 }}
               />
             </Grid>
@@ -87,7 +74,7 @@ const Home = () => {
                   subTitle: delivered,
                   mx: 3,
                   my: 0,
-                  spring: animateIncrement(setDelivered, 15),
+                  // spring: animateIncrement(setDelivered, 15),
                 }}
               />
             </Grid>
@@ -101,7 +88,7 @@ const Home = () => {
                   subTitle: invoice,
                   mx: 3,
                   my: 0,
-                  spring: animateIncrement(setInvoice, 7),
+                  // spring: animateIncrement(setInvoice, 7),
                 }}
               />
             </Grid>
