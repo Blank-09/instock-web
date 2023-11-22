@@ -87,7 +87,7 @@ export default function SideBar() {
                 }}
                 selected={currentPage === '/' + comp.title.toLowerCase()}
                 sx={{
-                  my: 3,
+                  my: 1.5,
                   border: '1px solid transparent',
                   ml: 1,
                   pr: 4,
