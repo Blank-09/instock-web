@@ -24,8 +24,8 @@ function Copyright(props) {
       {'Copyright © '}
       <LinkMUI
         color="inherit"
-        href="https://github.com/blank-09/"
         target="_blank"
+        href="https://github.com/blank-09/"
       >
         AspireCoders
       </LinkMUI>{' '}
@@ -130,23 +130,20 @@ export default function Login() {
                 </Grid>
               </Grid>
               <Button
-                type="submit"
                 fullWidth
-                variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                type="submit"
+                variant="contained"
+                size="large"
               >
-                <Link
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                  to={`/register`}
-                >
-                  Register
-                </Link>
+                Register
               </Button>
+
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to={'/register'}>
-                    <LinkMUI variant="body2">Create an account?</LinkMUI>
-                  </Link>
+                  <LinkMUI component={Link} to={'/register'} variant="body2">
+                    Create an account?
+                  </LinkMUI>
                 </Grid>
               </Grid>
             </Box>

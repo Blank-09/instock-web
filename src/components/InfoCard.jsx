@@ -1,12 +1,10 @@
 import React from 'react'
 import { Card, Box, CardContent, Typography } from '@mui/material'
 
-const InfoCard = ({ card }) => {
-  const { icon, title, subTitle, mx, my } = card
-
+const InfoCard = ({ icon, title, subTitle }) => {
   return (
     <div>
-      <Card elevation={6} sx={{ mx, my, borderRadius: 2 }}>
+      <Card variant="outlined" sx={{ borderRadius: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }} pl={1}>
           <Box
             p={1}
@@ -14,8 +12,8 @@ const InfoCard = ({ card }) => {
             sx={{
               display: 'flex',
               bgcolor: 'primary.main',
-              borderRadius: 2,
               alignItems: 'center',
+              borderRadius: 2,
             }}
           >
             {icon}
@@ -28,7 +26,7 @@ const InfoCard = ({ card }) => {
               justifyContent: 'center',
             }}
           >
-            <Typography variant="h6" color="text.secondary" component="div">
+            <Typography variant="h6" color="text.primary" component="div">
               {title}
             </Typography>
             <Typography
