@@ -9,52 +9,7 @@ import {
   ListItemButton,
   Box,
 } from '@mui/material'
-
-import {
-  HomeOutlined,
-  Inventory2Outlined,
-  SettingsOutlined,
-  DescriptionOutlined,
-  MonetizationOnOutlined,
-  CardTravelOutlined,
-  TrendingUpOutlined,
-  PeopleAltOutlined,
-} from '@mui/icons-material'
-
-const sideBarComponent = [
-  {
-    title: 'Home',
-    icon: <HomeOutlined color="primary" />,
-  },
-  {
-    title: 'Inventory',
-    icon: <Inventory2Outlined color="primary" />,
-  },
-  {
-    title: 'Orders',
-    icon: <CardTravelOutlined color="primary" />,
-  },
-  {
-    title: 'Customers',
-    icon: <PeopleAltOutlined color="primary" />,
-  },
-  {
-    title: 'Revenue',
-    icon: <MonetizationOnOutlined color="primary" />,
-  },
-  {
-    title: 'Growth',
-    icon: <TrendingUpOutlined color="primary" />,
-  },
-  {
-    title: 'Reports',
-    icon: <DescriptionOutlined color="primary" />,
-  },
-  {
-    title: 'Settings',
-    icon: <SettingsOutlined color="primary" />,
-  },
-]
+import { sideBarLinks as sidebarLinks } from '../constants/sidebarLinks'
 
 export default function SideBar() {
   const [selected, setSelected] = useState(0)
@@ -80,11 +35,11 @@ export default function SideBar() {
           flexDirection: 'column',
         }}
       >
-        {sideBarComponent.map((comp, index) => (
+        {sidebarLinks.map((item, index) => (
           <ListItem
             key={index}
             style={{
-              marginTop: index + 1 === sideBarComponent.length ? 'auto' : 0,
+              marginTop: index + 1 === sidebarLinks.length ? 'auto' : 0,
             }}
             disablePadding
             dense
@@ -94,10 +49,12 @@ export default function SideBar() {
               selected={selected === index}
               onClick={(event) => handlSelectedComponent(event, index)}
               component={NavLink}
-              to={`/${comp.title}`}
+              to={`/${item.title}`}
             >
-              <ListItemIcon sx={{ minWidth: '36px' }}>{comp.icon}</ListItemIcon>
-              <ListItemText primary={comp.title} />
+              <ListItemIcon sx={{ minWidth: '36px' }}>
+                <item.icon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}

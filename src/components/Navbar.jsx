@@ -14,23 +14,9 @@ import MenuItem from '@mui/material/MenuItem'
 import InventoryIcon from '@mui/icons-material/Inventory'
 
 import { Link } from 'react-router-dom'
+import { pages, settings } from '../constants/links'
 
-/* prettier-ignore */
-const pages = [
-  { path: '/',          name: 'Home'      },
-  { path: '/login',     name: 'Login'     },
-  { path: '/register',  name: 'Register'  },
-]
-
-/* prettier-ignore */
-const settings = [
-  { path: '/profile',   name: 'Profile'   },
-  { path: '/account',   name: 'Account'   },
-  { path: '/dashboard', name: 'Dashboard' },
-  { path: '/logout',    name: 'Logout'    },
-]
-
-function Navbar() {
+function Navbar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
 
@@ -51,7 +37,8 @@ function Navbar() {
 
   return (
     <AppBar
-      position="absolute"
+      position={props.sticky ? 'sticky' : 'fixed'}
+      top="0"
       color="default"
       sx={{ background: 'white' }}
       variant="outlined"

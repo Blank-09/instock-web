@@ -16,6 +16,7 @@ const theme = createTheme({
     text: {
       primary: grey[900],
       secondary: grey[500],
+      icon: red[400],
     },
     error: {
       main: red.A400,
