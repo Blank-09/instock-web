@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -10,15 +10,15 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import IconButton from '@mui/material/IconButton'
-import axios from 'axios'
 import InputAdornment from '@mui/material/InputAdornment'
-import Alert from '@mui/material/Alert'
+import IconButton from '@mui/material/IconButton'
+
+import { toast } from 'sonner'
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 
 function Copyright(props) {
   return (
@@ -46,6 +46,7 @@ function Copyright(props) {
 
 export default function Login() {
   const navigate = useNavigate()
+
   useEffect(() => {
     if (localStorage.getItem('Authenticated')) {
       navigate('/user')
@@ -55,6 +56,7 @@ export default function Login() {
   const [message, setMessage] = useState('')
   const [remember, setRemember] = useState(false)
   const [visible, setVisible] = useState(false)
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -65,17 +67,21 @@ export default function Login() {
           user.email === data.get('email') &&
           user.password === data.get('password')
       )
+
       setMessage('')
+
       if (userExists) {
         localStorage.setItem('Authenticated', true)
         navigate('/user')
       } else {
         setMessage('Invalid Username or Password')
       }
+
       if (remember) {
         localStorage.setItem('credentials', JSON.stringify(newData))
       }
     } catch (error) {
+      toast.error(String(error))
       console.error('Error:', error)
     }
   }
@@ -191,18 +197,17 @@ export default function Login() {
                 variant="contained"
                 size="large"
               >
-                {/* <Link
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                  to={`/register`}
-                > */}
                 Login
-                {/* </Link> */}
               </Button>
               <Grid container justifyContent="flex-end" spacing={2}>
                 <Grid item>
-                  <Link to>
-                    <LinkMUI variant="body2">Forgot Password?</LinkMUI>
-                  </Link>
+                  <LinkMUI
+                    component={Link}
+                    to={'/forgor-password'}
+                    variant="body2"
+                  >
+                    Forgot Password?
+                  </LinkMUI>
                 </Grid>
                 <Grid item>
                   <LinkMUI component={Link} to={'/register'} variant="body2">

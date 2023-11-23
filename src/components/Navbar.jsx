@@ -15,14 +15,25 @@ import InventoryIcon from '@mui/icons-material/Inventory'
 
 import { Link } from 'react-router-dom'
 import { pages, settings } from '../constants/links'
+import { useDispatch } from 'react-redux'
+import { toggleSidebar } from '../features/ui/uiSlice'
 
 function Navbar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget)
+  const dispatch = useDispatch()
+
+  // console.log('isSidebarOpen', isSidebarOpen)
+
+  window.toggleSidebar = () => {
+    dispatch(toggleSidebar())
   }
+
+  const handleOpenNavMenu = (event) => {
+    dispatch(toggleSidebar())
+  }
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget)
   }

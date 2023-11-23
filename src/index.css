@@ -1,14 +1,8 @@
-/* #root {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-<<<<<<< HEAD
-  background-color: #ededed;
-=======
-  background-color: #fff;
-} */
-
 * {
   margin: 0px;
   padding: 0px;
+}
+
+.active {
+  background-color: #f0f0f0 !important;
 }

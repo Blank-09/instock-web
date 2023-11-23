@@ -4,20 +4,20 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-import Link from '@mui/material/Link'
+import LinkMUI from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import axios from 'axios'
-import CircularProgress from '@mui/material/CircularProgress'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
+
 function Copyright(props) {
   return (
     <Typography
@@ -27,35 +27,42 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://github.com/blank-09/" target="_blank">
+      <LinkMUI
+        color="inherit"
+        href="https://github.com/blank-09/"
+        target="_blank"
+      >
         AspireCoders
-      </Link>{' '}
+      </LinkMUI>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   )
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 export default function Register() {
   useEffect(() => {
     if (localStorage.getItem('Authenticated')) navigate('/user')
   }, [])
+
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
 
   const [allowExtraEmails, setAllowExtraEmails] = useState(false)
   const [message, setMessage] = useState('')
+
   const handleSubmit = async (event) => {
     event.preventDefault()
+
     const data = new FormData(event.currentTarget)
+
     const newData = {
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
     }
+
     const res = await axios.get('http://localhost:3001/users')
     const userExists = res.data.some((user) => user.email === data.get('email'))
 
@@ -65,6 +72,7 @@ export default function Register() {
     const isPasswordValid = data.get('password').length >= 6
 
     console.log(isEmailValid, isPasswordValid)
+
     if (userExists) {
       setMessage('User already exists')
     } else if (isEmailValid && isPasswordValid && allowExtraEmails) {
@@ -232,9 +240,9 @@ export default function Register() {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="/login" variant="body2">
+                  <LinkMUI component={Link} href="/login" variant="body2">
                     Already have an account?
-                  </Link>
+                  </LinkMUI>
                 </Grid>
               </Grid>
             </Box>
