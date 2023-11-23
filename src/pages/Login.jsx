@@ -47,7 +47,7 @@ function Copyright(props) {
 export default function Login() {
   const navigate = useNavigate()
   useEffect(() => {
-    if (localStorage.getItem('Authenticated')) {
+    if (localStorage.getItem('Authenticated') === 'true') {
       navigate('/user')
     }
   }, [])
@@ -59,21 +59,30 @@ export default function Login() {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     try {
-      const response = await axios.get('http://localhost:3001/users')
+      const response = await axios.get(
+        `http://localhost:3001/users?email=${data.get('email')}`
+      )
+      // console.log(response.data)
+      // const userExists = () => {
+      //   return (
+      //     response.data.length != 0 &&
+      //     response.data[0].email == data.get('email') &&
+      //     response.data[0].password == data.get('password')
+      //   )
+      // }
       const userExists = response.data.some(
         (user) =>
           user.email === data.get('email') &&
           user.password === data.get('password')
       )
+
       setMessage('')
       if (userExists) {
         localStorage.setItem('Authenticated', true)
+        localStorage.setItem('Credentials', JSON.stringify(response.data[0]))
         navigate('/user')
       } else {
         setMessage('Invalid Username or Password')
-      }
-      if (remember) {
-        localStorage.setItem('credentials', JSON.stringify(newData))
       }
     } catch (error) {
       console.error('Error:', error)

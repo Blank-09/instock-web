@@ -19,6 +19,8 @@ import Inventory from './pages/Inventory'
 import Hero from './components/Hero'
 import SideBar from './components/SideBar'
 import ClearFix from './utils/ClearFix'
+import Logout from './pages/Logout'
+import FileUpload from './pages/FileUpload'
 
 // Router
 const router = createBrowserRouter([
@@ -92,6 +94,10 @@ const router = createBrowserRouter([
             path: '/user/inventory',
             element: <Inventory />,
           },
+          {
+            path: '/user/upload',
+            element: <FileUpload />,
+          },
         ],
       },
     ],
@@ -99,6 +105,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/logout',
+    element: <Logout />,
   },
   {
     path: '/register',

@@ -40,7 +40,7 @@ function Copyright(props) {
 
 export default function Register() {
   useEffect(() => {
-    if (localStorage.getItem('Authenticated')) navigate('/user')
+    if (localStorage.getItem('Authenticated') === 'true') navigate('/user')
   }, [])
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
@@ -81,7 +81,7 @@ export default function Register() {
           return
         }
         localStorage.setItem('Authenticated', true)
-        navigate('/user')
+        navigate('/login')
       } catch (error) {
         setMessage(String(error))
         console.error(error)
