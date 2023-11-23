@@ -10,7 +10,14 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-
+import axios from 'axios'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
 function Copyright(props) {
   return (
     <Typography
@@ -32,13 +39,60 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function Register() {
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    if (localStorage.getItem('Authenticated')) navigate('/user')
+  }, [])
+  const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
+
+  const [allowExtraEmails, setAllowExtraEmails] = useState(false)
+  const [message, setMessage] = useState('')
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
+    const newData = {
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
-    })
+    }
+    const res = await axios.get('http://localhost:3001/users')
+    const userExists = res.data.some((user) => user.email === data.get('email'))
+
+    console.log(newData)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const isEmailValid = emailRegex.test(data.get('email'))
+    const isPasswordValid = data.get('password').length >= 6
+
+    console.log(isEmailValid, isPasswordValid)
+    if (userExists) {
+      setMessage('User already exists')
+    } else if (isEmailValid && isPasswordValid && allowExtraEmails) {
+      try {
+        const response = await axios.post(
+          'http://localhost:3001/users',
+          newData
+        )
+        const res = response.data
+        console.log(res)
+        setMessage('')
+        if (userExists) {
+          setMessage('User already exists')
+          return
+        }
+        localStorage.setItem('Authenticated', true)
+        navigate('/user')
+      } catch (error) {
+        setMessage(String(error))
+        console.error(error)
+      }
+    } else if (!isEmailValid) {
+      setMessage('Invalid Email')
+    } else if (!isPasswordValid) {
+      setMessage('Your password is very weak')
+    } else if (!allowExtraEmails) {
+      setMessage('Agree our terms and conditions')
+    }
   }
 
   return (
@@ -92,6 +146,9 @@ export default function Register() {
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
+              <Typography variant="subtitle2" color={'red'} paddingY={3}>
+                {message}
+              </Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -130,17 +187,38 @@ export default function Register() {
                     fullWidth
                     name="password"
                     label="Password"
-                    type="password"
+                    type={visible ? 'text' : 'password'}
                     id="password"
                     autoComplete="new-password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setVisible((prev) => !prev)}
+                            edge="end"
+                          >
+                            {visible ? (
+                              <VisibilityIcon />
+                            ) : (
+                              <VisibilityOffIcon />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
+                      <Checkbox
+                        value="allowExtraEmails"
+                        color="primary"
+                        // checked={remember}
+                        onChange={() => setAllowExtraEmails((prev) => !prev)}
+                      />
                     }
-                    label="Remember me"
+                    label="Agree our terms and conditions"
                   />
                 </Grid>
               </Grid>
