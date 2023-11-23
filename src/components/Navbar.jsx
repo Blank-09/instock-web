@@ -12,10 +12,23 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import InventoryIcon from '@mui/icons-material/Inventory'
+
 import { Link } from 'react-router-dom'
 
-const pages = ['Products', 'Login', 'Register']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
+/* prettier-ignore */
+const pages = [
+  { path: '/',          name: 'Home'      },
+  { path: '/login',     name: 'Login'     },
+  { path: '/register',  name: 'Register'  },
+]
+
+/* prettier-ignore */
+const settings = [
+  { path: '/profile',   name: 'Profile'   },
+  { path: '/account',   name: 'Account'   },
+  { path: '/dashboard', name: 'Dashboard' },
+  { path: '/logout',    name: 'Logout'    },
+]
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
@@ -37,7 +50,13 @@ function Navbar() {
   }
 
   return (
-    <AppBar position="static" color="transparent" variant="outlined">
+    <AppBar
+      position="absolute"
+      color="default"
+      sx={{ background: 'white' }}
+      variant="outlined"
+      elevation={0}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <InventoryIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -73,24 +92,16 @@ function Navbar() {
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+              sx={{ display: { xs: 'block', md: 'none' } }}
+              keepMounted
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.path} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -117,16 +128,13 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.path}
+                to={page.path}
+                component={Link}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#000', display: 'block' }}
+                sx={{ my: 2 }}
               >
-                <Link
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                  to={`/${page.toLocaleLowerCase()}`}
-                >
-                  {page}
-                </Link>
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -141,25 +149,24 @@ function Navbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-              color="inherit"
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+              sx={{ mt: '45px', color: 'inherit' }}
+              keepMounted
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem
+                  component={Link}
+                  to={setting.path}
+                  key={setting.path}
+                  onClick={handleCloseUserMenu}
+                  sx={{ textAlign: 'center' }}
+                >
+                  {setting.name}
                 </MenuItem>
               ))}
             </Menu>

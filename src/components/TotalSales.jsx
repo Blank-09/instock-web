@@ -76,10 +76,9 @@ export default function TotalSales() {
     },
   ]
   return (
-    <Paper elevation={10} style={{ marginLeft: '50px', borderRadius: '10px' }}>
+    <Paper variant="outlined" sx={{ borderRadius: '10px', mb: 3 }}>
       <Box
         sx={{
-          margin: 3,
           bgcolor: 'white',
           borderRadius: 2,
           padding: 4,

@@ -3,7 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon server/main.ts -w server",
+    "dev": "concurrently -c auto \"npm:server\" \"npm:client\"",
+    "client": "vite --port 3000",
+    "server": "json-server -w ./db/users.json -p 3001",
+    "dev:express": "nodemon server/main.ts -w server",
     "start": "NODE_ENV=production ts-node server/main.ts",
     "preview": "vite preview",
     "build": "vite build"
@@ -14,6 +17,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^3.1.0",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "vite": "^4.5.0"
@@ -23,8 +27,6 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
-    "animejs": "^3.2.1",
-    "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "react": "^18.2.0",
@@ -32,7 +34,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.18.0",
-    "react-spring": "^9.7.3",
     "typescript": "^4.9.5",
     "vite-express": "^0.11.0"
   }
