@@ -48,7 +48,7 @@ export default function Login() {
   const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('Authenticated')) {
-      navigate('/home')
+      navigate('/user')
     }
   }, [])
 
@@ -59,7 +59,7 @@ export default function Login() {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     try {
-      const response = await axios.get('http://localhost:3004/users')
+      const response = await axios.get('http://localhost:3001/users')
       const userExists = response.data.some(
         (user) =>
           user.email === data.get('email') &&
@@ -68,7 +68,7 @@ export default function Login() {
       setMessage('')
       if (userExists) {
         localStorage.setItem('Authenticated', true)
-        navigate('/home')
+        navigate('/user')
       } else {
         setMessage('Invalid Username or Password')
       }

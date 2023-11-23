@@ -40,7 +40,7 @@ function Copyright(props) {
 
 export default function Register() {
   useEffect(() => {
-    if (localStorage.getItem('Authenticated')) navigate('/home')
+    if (localStorage.getItem('Authenticated')) navigate('/user')
   }, [])
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
@@ -56,7 +56,7 @@ export default function Register() {
       email: data.get('email'),
       password: data.get('password'),
     }
-    const res = await axios.get('http://localhost:3004/users')
+    const res = await axios.get('http://localhost:3001/users')
     const userExists = res.data.some((user) => user.email === data.get('email'))
 
     console.log(newData)
@@ -70,7 +70,7 @@ export default function Register() {
     } else if (isEmailValid && isPasswordValid && allowExtraEmails) {
       try {
         const response = await axios.post(
-          'http://localhost:3004/users',
+          'http://localhost:3001/users',
           newData
         )
         const res = response.data
@@ -81,7 +81,7 @@ export default function Register() {
           return
         }
         localStorage.setItem('Authenticated', true)
-        navigate('/home')
+        navigate('/user')
       } catch (error) {
         setMessage(String(error))
         console.error(error)
