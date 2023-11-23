@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "kavin",
+      "lastName": "S",
+      "email": "skavinspravin123@gmail.com",
+      "password": "kavin123"
+    },
+    {
+      "firstName": "Priyanshu",
+      "lastName": "T",
+      "email": "priyanshu23@gmail.com",
+      "password": "priya123",
+      "id": 2
+    }
+  ]
+}
