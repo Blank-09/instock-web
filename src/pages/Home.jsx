@@ -1,10 +1,17 @@
 import React from 'react'
-import { Grid, Container } from '@mui/material'
-import InfoCard from '../components/InfoCard'
+
+// MUI
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+
+// MUI Icons
 import ViewInArRoundedIcon from '@mui/icons-material/ViewInArRounded'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReceiptRoundedIcon from '@mui/icons-material/ReceiptRounded'
+
+// Components
+import InfoCard from '../components/InfoCard'
 import TotalSales from '../components/TotalSales'
 
 const iconProps = {

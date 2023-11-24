@@ -1,6 +1,11 @@
-import { Link as RouterLink } from 'react-router-dom'
-import { Box, Button, Chip, Link, Typography } from '@mui/material'
 import React from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Chip from '@mui/material/Chip'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+
+import { Link as RouterLink } from 'react-router-dom'
 
 const Hero = () => {
   return (

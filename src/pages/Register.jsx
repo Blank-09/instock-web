@@ -1,48 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+// MUI
 import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import LinkMUI from '@mui/material/Link'
-import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import Checkbox from '@mui/material/Checkbox'
 import Container from '@mui/material/Container'
-import Paper from '@mui/material/Paper'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
+import LinkMUI from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <LinkMUI
-        color="inherit"
-        href="https://github.com/blank-09/"
-        target="_blank"
-      >
-        AspireCoders
-      </LinkMUI>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
+// Icons
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+
+// Components
+import BackgroundAnimation from '../components/BackgroundAnimation'
+import Copyright from '../components/Copyright'
+
+// Others
+import axios from 'axios'
+import { useNavigate, Link } from 'react-router-dom'
+import { toast } from 'sonner'
 
 export default function Register() {
   useEffect(() => {
-    if (localStorage.getItem('Authenticated') === 'true') navigate('/user')
+    if (localStorage.getItem('Authenticated') === 'true') {
+      navigate('/user')
+      toast.message('You are already logged in')
+    }
   }, [])
 
   const navigate = useNavigate()
@@ -55,63 +46,60 @@ export default function Register() {
     event.preventDefault()
 
     const data = new FormData(event.currentTarget)
-
-    const newData = {
+    const body = {
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
     }
 
-    const res = await axios.get('http://localhost:3001/users')
-    const userExists = res.data.some((user) => user.email === data.get('email'))
+    console.log(body)
 
-    console.log(newData)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const isEmailValid = emailRegex.test(data.get('email'))
-    const isPasswordValid = data.get('password').length >= 6
+    const isEmailValid = emailRegex.test(body.email)
+    const isPasswordValid = body.password.length >= 6
 
-    console.log(isEmailValid, isPasswordValid)
+    if (!isEmailValid) {
+      return setMessage('Invalid Email')
+    }
+
+    if (!isPasswordValid) {
+      return setMessage('Your password is very weak')
+    }
+
+    if (!allowExtraEmails) {
+      return setMessage('Agree our terms and conditions')
+    }
+
+    const res = await axios.get(`/users?email=${body.email}`)
+    const userExists = res.data.length > 0
 
     if (userExists) {
-      setMessage('User already exists')
-    } else if (isEmailValid && isPasswordValid && allowExtraEmails) {
-      try {
-        const response = await axios.post(
-          'http://localhost:3001/users',
-          newData
-        )
-        const res = response.data
-        console.log(res)
-        setMessage('')
-        if (userExists) {
-          setMessage('User already exists')
-          return
-        }
-        localStorage.setItem('Authenticated', true)
-        navigate('/login')
-      } catch (error) {
-        setMessage(String(error))
-        console.error(error)
-      }
-    } else if (!isEmailValid) {
-      setMessage('Invalid Email')
-    } else if (!isPasswordValid) {
-      setMessage('Your password is very weak')
-    } else if (!allowExtraEmails) {
-      setMessage('Agree our terms and conditions')
+      return setMessage('User already exists')
+    }
+
+    try {
+      const response = await axios.post('/users', body)
+      const res = response.data
+      console.log(res)
+
+      navigate('/login')
+      toast.success('User registered successfully')
+    } catch (error) {
+      setMessage(String(error))
+      console.error(error)
     }
   }
 
   return (
     <Box
       sx={{
-        background: 'rgb(249,250,251)',
         minHeight: '100vh',
         display: 'grid',
         placeItems: 'center',
       }}
     >
+      <BackgroundAnimation color={message && '#f00'} />
       <Container
         component="main"
         sx={{
@@ -240,7 +228,7 @@ export default function Register() {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <LinkMUI component={Link} href="/login" variant="body2">
+                  <LinkMUI component={Link} to="/login" variant="body2">
                     Already have an account?
                   </LinkMUI>
                 </Grid>
