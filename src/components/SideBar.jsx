@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import {
   List,
@@ -9,13 +10,11 @@ import {
   ListItemButton,
   Box,
 } from '@mui/material'
+
 import { sideBarLinks as sidebarLinks } from '../constants/sidebarLinks'
 
 export default function SideBar() {
-  const [selected, setSelected] = useState(0)
-  const handlSelectedComponent = (_, index) => {
-    setSelected(index)
-  }
+  const isSidebarOpen = useSelector((state) => state.ui.sidebarOpen)
 
   return (
     <Box
@@ -26,7 +25,14 @@ export default function SideBar() {
         height: '100%',
         borderRight: 1,
         borderColor: 'divider',
+        bgcolor: 'background.paper',
+        position: { xs: 'absolute', md: 'static' },
+        width: { xs: '350px', md: '100%' },
+        maxWidth: '90%',
+        transition: 'left 0.3s ease-in-out',
+        top: 0,
       }}
+      style={{ left: isSidebarOpen ? '0%' : '-100%' }}
     >
       <List
         sx={{
@@ -46,10 +52,8 @@ export default function SideBar() {
           >
             <ListItemButton
               sx={{ borderRadius: '0 50px 50px 0', mb: 1, px: 2, py: 1 }}
-              selected={selected === index}
-              onClick={(event) => handlSelectedComponent(event, index)}
               component={NavLink}
-              to={`/${item.title}`}
+              to={`/user${item.url}`}
             >
               <ListItemIcon sx={{ minWidth: '36px' }}>
                 <item.icon color="primary" />
