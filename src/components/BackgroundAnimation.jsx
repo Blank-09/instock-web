@@ -20,9 +20,9 @@ const BackgroundAnimation = ({ count = 15, color }) => {
                 height: `${size}px`,
                 width: `${size}px`,
                 background: color,
-                background:
-                  color ||
-                  `hsl(${Math.random() * 360}, ${Math.random() * 100}%, 50%)`,
+                // background:
+                //   color ||
+                //   `hsl(${Math.random() * 360}, ${Math.random() * 100}%, 50%)`,
               }}
             />
           )
