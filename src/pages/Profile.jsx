@@ -180,7 +180,7 @@ function ProfileDisplay() {
             style={{ border: '3px solid lightblue', borderRadius: '70px' }}
           />
         </div>
-        <Typography>Name</Typography>
+        <Typography></Typography>
       </Item>
     </>
   )
