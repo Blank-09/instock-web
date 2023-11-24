@@ -41,7 +41,6 @@ export default function FileUpload() {
     const reader = new FileReader()
     reader.onloadend = async () => {
       const base64Data = reader.result
-      // console.log(reader.result)
       setUrl(reader.result)
 
       const updatedData = {
