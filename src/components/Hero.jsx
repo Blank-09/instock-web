@@ -4,21 +4,13 @@ import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
 
 import { Link as RouterLink } from 'react-router-dom'
 import ContactImage from '../../public/contactImg.svg'
 import AboutImage from '../../public/aboutImg.svg'
-import {
-  Box,
-  Button,
-  Chip,
-  Container,
-  Grid,
-  Link,
-  Typography,
-  TextField,
-} from '@mui/material'
-import React from 'react'
 
 const Info = () => {
   return (
