@@ -1,13 +1,11 @@
-import {
-  HomeOutlined,
-  Inventory2Outlined,
-  SettingsOutlined,
-  DescriptionOutlined,
-  MonetizationOnOutlined,
-  CardTravelOutlined,
-  TrendingUpOutlined,
-  PeopleAltOutlined,
-} from '@mui/icons-material'
+import CardTravelOutlined from '@mui/icons-material/CardTravelOutlined'
+import DescriptionOutlined from '@mui/icons-material/DescriptionOutlined'
+import HomeOutlined from '@mui/icons-material/HomeOutlined'
+import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined'
+import MonetizationOnOutlined from '@mui/icons-material/MonetizationOnOutlined'
+import PeopleAltOutlined from '@mui/icons-material/PeopleAltOutlined'
+import SettingsOutlined from '@mui/icons-material/SettingsOutlined'
+import TrendingUpOutlined from '@mui/icons-material/TrendingUpOutlined'
 
 export const sideBarLinks = [
   {

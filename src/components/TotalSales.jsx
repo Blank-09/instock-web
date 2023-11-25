@@ -1,6 +1,6 @@
-import { Box } from '@mui/material'
 import React from 'react'
 import ApexCharts from 'react-apexcharts'
+import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 
 export default function TotalSales() {

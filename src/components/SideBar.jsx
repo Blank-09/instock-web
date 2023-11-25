@@ -1,39 +1,49 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListItemButton,
-  Box,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemButton from '@mui/material/ListItemButton'
+import Typography from '@mui/material/Typography'
+import InventoryIcon from '@mui/icons-material/Inventory'
 
 import { sideBarLinks as sidebarLinks } from '../constants/sidebarLinks'
 
 export default function SideBar() {
-  const isSidebarOpen = useSelector((state) => state.ui.sidebarOpen)
-
   return (
     <Box
       component="aside"
       sx={{
         pt: 2,
         pr: 2,
-        height: '100%',
+        height: '100vh',
+        width: '100%',
         borderRight: 1,
         borderColor: 'divider',
         bgcolor: 'background.paper',
-        position: { xs: 'absolute', md: 'static' },
-        width: { xs: '350px', md: '100%' },
-        maxWidth: '90%',
-        transition: 'left 0.3s ease-in-out',
-        top: 0,
+        display: 'flex',
+        flexDirection: 'column',
       }}
-      style={{ left: isSidebarOpen ? '0%' : '-100%' }}
     >
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 1,
+          py: 1,
+          mb: 2,
+        }}
+      >
+        <InventoryIcon color="primary" />
+        <Typography variant="h5" component="h1">
+          INSTOCK
+        </Typography>
+      </Box>
+
       <List
         sx={{
           height: '100%',

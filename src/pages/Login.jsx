@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+
+// MUI
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -10,45 +12,26 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 
-import { toast } from 'sonner'
+// Icons
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+
 import { useNavigate, Link } from 'react-router-dom'
+import Copyright from '../components/Copyright'
+
 import axios from 'axios'
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <LinkMUI
-        color="inherit"
-        target="_blank"
-        href="https://github.com/blank-09/"
-      >
-        AspireCoders
-      </LinkMUI>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { toast } from 'sonner'
+import BackgroundAnimation from '../components/BackgroundAnimation'
 
 export default function Login() {
   const navigate = useNavigate()
 
   useEffect(() => {
     if (localStorage.getItem('Authenticated') === 'true') {
+      toast.info('You are already logged in')
       navigate('/user')
     }
   }, [])
@@ -61,17 +44,8 @@ export default function Login() {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     try {
-      const response = await axios.get(
-        `http://localhost:3001/users?email=${data.get('email')}`
-      )
-      // console.log(response.data)
-      // const userExists = () => {
-      //   return (
-      //     response.data.length != 0 &&
-      //     response.data[0].email == data.get('email') &&
-      //     response.data[0].password == data.get('password')
-      //   )
-      // }
+      const response = await axios.get(`/users?email=${data.get('email')}`)
+
       const userExists = response.data.some(
         (user) =>
           user.email === data.get('email') &&
@@ -95,12 +69,12 @@ export default function Login() {
   return (
     <Box
       sx={{
-        background: 'rgb(249,250,251)',
         minHeight: '100vh',
         display: 'grid',
         placeItems: 'center',
       }}
     >
+      <BackgroundAnimation color={message && '#f00'} />
       <Container
         component="main"
         sx={{
@@ -112,6 +86,8 @@ export default function Login() {
             maxWidth: '500px',
             margin: 'auto',
             padding: '1.5rem 2rem',
+            backdropFilter: 'blur(5px)',
+            boxShadow: '0 0 24px rgba(255,255,255,0.3)',
           }}
           elevation={0}
           variant="outlined"
@@ -210,7 +186,7 @@ export default function Login() {
                 <Grid item>
                   <LinkMUI
                     component={Link}
-                    to={'/forgor-password'}
+                    to={'/forgot-password'}
                     variant="body2"
                   >
                     Forgot Password?
