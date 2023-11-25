@@ -1,9 +1,6 @@
 {
   "files.autoSave": "off",
   "editor.tabSize": 2,
-  "css.styleSheets": [
-    "/node_modules/bootstrap/dist/css/bootstrap.min.css"
-  ],
   "todo-tree.general.tags": [
     "TODO",
     "FIXME",

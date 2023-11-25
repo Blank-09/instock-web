@@ -1,3 +1,10 @@
+import React from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Chip from '@mui/material/Chip'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+
 import { Link as RouterLink } from 'react-router-dom'
 import ContactImage from '../../public/contactImg.svg'
 import AboutImage from '../../public/aboutImg.svg'

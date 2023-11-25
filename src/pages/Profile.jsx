@@ -1,18 +1,17 @@
-import * as React from 'react'
-import { styled } from '@mui/material/styles'
-import Paper from '@mui/material/Paper'
-import Grid from '@mui/material/Grid'
-import { TextField } from '@mui/material'
-import {
-  Container,
-  Typography,
-  MenuItem,
-  FormControl,
-  Select,
-  Button,
-} from '@mui/material'
+import React from 'react'
 
-import image from '../assets/react.svg'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import FormControl from '@mui/material/FormControl'
+import Grid from '@mui/material/Grid'
+import MenuItem from '@mui/material/MenuItem'
+import Paper from '@mui/material/Paper'
+import Select from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import { styled } from '@mui/material/styles'
+
+import logo from '../assets/react.svg'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -174,7 +173,7 @@ function ProfileDisplay() {
         </Grid>
         <div style={{ marginTop: '50px', textAlign: 'center' }}>
           <img
-            src={image}
+            src={logo}
             width="130px"
             height="130px"
             style={{ border: '3px solid lightblue', borderRadius: '70px' }}

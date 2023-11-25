@@ -1,7 +1,8 @@
-import { Box } from '@mui/material'
-import React from 'react'
-import ApexCharts from 'react-apexcharts'
+import React, { Suspense } from 'react'
+import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+
+const ApexCharts = React.lazy(() => import('react-apexcharts'))
 
 export default function TotalSales() {
   const options = {
@@ -84,13 +85,15 @@ export default function TotalSales() {
           padding: 4,
         }}
       >
-        <ApexCharts
-          options={options}
-          series={series}
-          height={400}
-          type="line"
-          width="100%"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ApexCharts
+            options={options}
+            series={series}
+            height={400}
+            type="line"
+            width="100%"
+          />
+        </Suspense>
       </Box>
     </Paper>
   )
