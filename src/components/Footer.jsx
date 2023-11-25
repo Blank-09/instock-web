@@ -2,6 +2,7 @@ import React from 'react'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
@@ -37,29 +38,37 @@ const links = [
 
 const Footer = () => {
   return (
-    <Paper
-      variant="outlined"
-      sx={{ p: 4, display: 'flex', justifyContent: 'space-between' }}
-    >
-      <Typography variant="body2" color="text.secondary" align="center">
-        {'© '}
-        {new Date().getFullYear()} AspireCoders. All rights reserved.
-      </Typography>
+    <Paper variant="outlined">
+      <Container
+        sx={{
+          py: 4,
+          gap: 2,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexDirection: { xs: 'column', md: 'row' },
+        }}
+      >
+        <Typography variant="body2" align="center">
+          {'© '}
+          {new Date().getFullYear()} <b>AspireCoders</b>. All rights reserved.
+        </Typography>
 
-      <Box>
-        {/* Social Links */}
-        {links.map((link, index) => (
-          <Button
-            sx={{ mx: 1, p: 1, minWidth: 0 }}
-            variant="text"
-            key={index}
-            href={link.url}
-            target="_blank"
-          >
-            {link.icon}
-          </Button>
-        ))}
-      </Box>
+        <Box>
+          {/* Social Links */}
+          {links.map((link, index) => (
+            <Button
+              sx={{ mx: 1, p: 1, minWidth: 0 }}
+              variant="text"
+              key={index}
+              href={link.url}
+              target="_blank"
+            >
+              {link.icon}
+            </Button>
+          ))}
+        </Box>
+      </Container>
     </Paper>
   )
 }
