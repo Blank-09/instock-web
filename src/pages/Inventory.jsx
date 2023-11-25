@@ -14,6 +14,7 @@ export default class Inventory extends Component {
             sx={{
               bgcolor: 'white',
               marginLeft: 2,
+              width: '100vb',
             }}
           >
             <Typography variant="h5" sx={{ ml: 2, fontWeight: 'bold', my: 3 }}>
