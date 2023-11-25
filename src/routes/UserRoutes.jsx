@@ -17,6 +17,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleSidebar } from '../features/ui/uiSlice'
 import { toast } from 'sonner'
+import { Suspense } from 'react'
 
 export default function UserRoutes() {
   const navigate = useNavigate()
@@ -72,7 +73,9 @@ export default function UserRoutes() {
           sx={{ height: '100%', overflow: 'auto' }}
         >
           <DashboardNav />
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
           {/* <Box sx={{ p: 4 }}>
             <Typography>Here sidebar 2 will go here</Typography>
             <List>

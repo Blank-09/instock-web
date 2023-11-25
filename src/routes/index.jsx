@@ -1,14 +1,16 @@
+import React, { Suspense } from 'react'
+
 // Pages
 import Register from '../pages/Register'
-import Home from '../pages/Home'
+// import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Logout from '../pages/Logout'
-import Inventory from '../pages/Inventory'
+// import Inventory from '../pages/Inventory'
 
 // Components
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import FileUpload from '../components/FileUpload'
+// import FileUpload from '../components/FileUpload'
 import Footer from '../components/Footer'
 
 // React Router
@@ -24,7 +26,9 @@ const router = createBrowserRouter([
     element: (
       <>
         <Navbar />
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </>
     ),
     children: [
@@ -45,18 +49,25 @@ const router = createBrowserRouter([
     element: <UserRoutes />,
     children: [
       {
-        path: '/user/',
-        element: <Home />,
+        path: '/user',
+        // element: <Home />,
+        Component: React.lazy(() => import('../pages/Home')),
       },
       {
         path: '/user/inventory',
-        element: <Inventory />,
+        // element: <Inventory />,
+        Component: React.lazy(() => import('../pages/Inventory')),
       },
       {
         path: '/user/upload',
-        element: <FileUpload />,
+        // element: <FileUpload />,
+        Component: React.lazy(() => import('../components/FileUpload')),
       },
     ],
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
   {
     path: '/login',
@@ -65,10 +76,6 @@ const router = createBrowserRouter([
   {
     path: '/logout',
     element: <Logout />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
   },
 ])
 
