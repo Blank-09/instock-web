@@ -3,6 +3,10 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import Link from '@mui/material/Link'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
@@ -11,53 +15,52 @@ import TextField from '@mui/material/TextField'
 import { Link as RouterLink } from 'react-router-dom'
 import ContactImage from '../../public/contactImg.svg'
 import AboutImage from '../../public/aboutImg.svg'
-import { AiFillThunderbolt } from 'react-icons/ai'
 
 const Info = () => {
   return (
-    <Container sx={{ mt: 5 }}>
-      <Grid container justifyContent="center" alignItems="center" spacing={8}>
-        <Grid item xs={12} md={6} lg={4} textAlign={'center'}>
-          <Typography variant="h3">70+</Typography>
-          <Typography variant="p">Clients</Typography>
+    <Container
+      sx={{
+        my: 8,
+      }}
+    >
+      <Box
+        sx={{
+          bgcolor: 'primary.main',
+          color: 'common.white',
+          border: '#bbb solid 1px',
+          borderRadius: 3,
+          py: 8,
+        }}
+      >
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          textAlign="center"
+          rowSpacing={8}
+        >
+          {infoData.map((item, index) => (
+            <Grid key={index} item xs={12} sm={6} md={4}>
+              <Typography variant="h3">{item.title}</Typography>
+              <Typography variant="body1">{item.subtitle}</Typography>
+            </Grid>
+          ))}
         </Grid>
-        <Grid item xs={12} md={6} lg={4} textAlign={'center'}>
-          <Typography variant="h3">89K</Typography>
-          <Typography variant="p">Followers on social media</Typography>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4} textAlign={'center'}>
-          <Typography variant="h3">3</Typography>
-          <Typography variant="p">Published books</Typography>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4} textAlign={'center'}>
-          <Typography variant="h3">8</Typography>
-          <Typography variant="p">TED talks</Typography>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4} textAlign={'center'}>
-          <Typography variant="h3">36</Typography>
-          <Typography variant="p">Years of experience</Typography>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4} textAlign={'center'}>
-          <Typography variant="h3">10+</Typography>
-          <Typography variant="p">workshops</Typography>
-        </Grid>
-      </Grid>
+      </Box>
     </Container>
   )
 }
 
 const About = () => {
   return (
-    <Container sx={{ mt: 15, mb: 15 }}>
+    <Container sx={{ my: 15 }}>
+      <Typography variant="h3" textAlign="center" sx={{ mb: 1 }}>
+        About Us
+      </Typography>
       <Grid container justifyContent="center" alignItems="center" spacing={8}>
-        <Grid item xs={12} md={6}>
-          <Typography
-            variant="h3"
-            textAlign="star0t"
-            sx={{ mb: 5 }}
-            fontWeight={'bold'}
-          >
-            About Us .
+        <Grid item sx={12} md={6}>
+          <Typography variant="body1" sxtextAlign={'center'} sx={{ mb: 1 }}>
+            About Us
           </Typography>
           <Typography variant="h4">
             Helping businesses succeed through the power of managing stock...
@@ -74,7 +77,7 @@ const About = () => {
             hic qui beatae quasi animi quae, ad suscipit dolor.
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} textAlign={'center'}>
+        <Grid item sx={12} md={6} textAlign={'center'}>
           <img
             src={AboutImage}
             style={{ width: '350px', height: '350px', marginTop: '30px' }}
@@ -89,29 +92,37 @@ const ContactForm = () => {
   return (
     <>
       <Container sx={{ mt: 15, mb: 15 }}>
+        <Box>
+          <Typography variant="h3">Let's talk!</Typography>
+          <Typography
+            variant="body1"
+            sx={{ mt: 3, maxWidth: { sm: '75%', md: '45%' } }}
+          >
+            We'd love to hear from you. Send us a message and we'll respond as
+            soon as possible.
+          </Typography>
+        </Box>
         <Grid
           container
           spacing={10}
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item lg={12}>
+          <Grid item sx={12} md={6} textAlign={'center'}>
             <div>
               <Typography variant="h3">Let's talk!</Typography>
               <Typography variant="p" sx={{ mt: 3 }}>
                 Vivamus in nisl metus? Phasellus
               </Typography>
             </div>
-          </Grid>
-          <Grid item xs={12} md={6} textAlign={'center'}>
-            <Box>
+            <Grid textAlign={'end'}>
               <img
                 src={ContactImage}
-                style={{ width: '450px', height: '450px', marginTop: '30px' }}
+                style={{ width: '250px', height: '250px', marginTop: '30px' }}
               />
             </Box>
           </Grid>
-          <Grid item xs={12} md={6} maxWidth="sm">
+          <Grid item sx={12} md={6} maxWidth="sm">
             <Grid item xs={12}>
               <Typography variant="body1">Full Name</Typography>
               <TextField
@@ -120,6 +131,11 @@ const ContactForm = () => {
                 size="small"
                 fullWidth
                 variant="outlined"
+                InputProps={{
+                  style: {
+                    borderRadius: '0px',
+                  },
+                }}
                 style={{ maxWidth: '100%' }}
               />
             </Grid>
@@ -131,23 +147,35 @@ const ContactForm = () => {
                 size="small"
                 fullWidth
                 variant="outlined"
+                InputProps={{
+                  style: {
+                    borderRadius: '0px',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} marginTop={5}>
               <Typography variant="body1">Message</Typography>
-              <TextField
-                multiline
+              <textarea
                 id="outlined-basic"
                 size="small"
                 fullWidth
                 variant="outlined"
-                placeholder="Type your message"
                 style={{ borderColor: '#b8bcc2' }}
-                rows={4}
+                cols={70}
+                rows={8}
+                InputProps={{
+                  style: {
+                    borderRadius: '0px',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} marginTop={5}>
-              <Button variant="contained" fullWidth>
+              <Button
+                variant="contained"
+                style={{ borderRadius: '0px', width: '100%' }}
+              >
                 Send Message
               </Button>
             </Grid>
@@ -297,6 +325,9 @@ const Hero = () => {
               Login
             </Button>
           </Box>
+        </Box>
+        <Box position="absolute" sx={{ cursor: 'pointer' }} bottom="0">
+          <RxChevronDown size="28px" />
         </Box>
       </Box>
       <Info />

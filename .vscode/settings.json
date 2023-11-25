@@ -10,7 +10,8 @@
     "WARN",
     "NOTE",
     "STORAGE",
-    "UNDONE"
+    "UNDONE",
+    "TEST"
   ],
   "todo-tree.highlights.customHighlight": {
     "TODO": {
@@ -73,6 +74,13 @@
       "icon": "blocked",
       "type": "tag"
     },
+    "TEST": {
+      "foreground": "#000",
+      "background": "#FFA500",
+      "iconColour": "#FFF",
+      "icon": "beaker",
+      "type": "tag"
+    }
   },
   "todo-tree.highlights.defaultHighlight": {
     "type": "text-and-comment",
