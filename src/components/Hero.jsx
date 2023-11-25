@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField'
 import { Link as RouterLink } from 'react-router-dom'
 import ContactImage from '../../public/contactImg.svg'
 import AboutImage from '../../public/aboutImg.svg'
+import { AiFillThunderbolt } from 'react-icons/ai'
 
 const Info = () => {
   return (
@@ -49,9 +50,14 @@ const About = () => {
   return (
     <Container sx={{ mt: 15, mb: 15 }}>
       <Grid container justifyContent="center" alignItems="center" spacing={8}>
-        <Grid item sx={12} md={6}>
-          <Typography variant="body1" sxtextAlign={'center'} sx={{ mb: 1 }}>
-            About Us
+        <Grid item xs={12} md={6}>
+          <Typography
+            variant="h3"
+            textAlign="star0t"
+            sx={{ mb: 5 }}
+            fontWeight={'bold'}
+          >
+            About Us .
           </Typography>
           <Typography variant="h4">
             Helping businesses succeed through the power of managing stock...
@@ -68,7 +74,7 @@ const About = () => {
             hic qui beatae quasi animi quae, ad suscipit dolor.
           </Typography>
         </Grid>
-        <Grid item sx={12} md={6} textAlign={'center'}>
+        <Grid item xs={12} md={6} textAlign={'center'}>
           <img
             src={AboutImage}
             style={{ width: '350px', height: '350px', marginTop: '30px' }}
@@ -89,21 +95,23 @@ const ContactForm = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item sx={12} md={6} textAlign={'center'}>
+          <Grid item lg={12}>
             <div>
               <Typography variant="h3">Let's talk!</Typography>
               <Typography variant="p" sx={{ mt: 3 }}>
                 Vivamus in nisl metus? Phasellus
               </Typography>
             </div>
-            <Grid textAlign={'end'}>
+          </Grid>
+          <Grid item xs={12} md={6} textAlign={'center'}>
+            <Box>
               <img
                 src={ContactImage}
-                style={{ width: '250px', height: '250px', marginTop: '30px' }}
+                style={{ width: '450px', height: '450px', marginTop: '30px' }}
               />
-            </Grid>
+            </Box>
           </Grid>
-          <Grid item sx={12} md={6} maxWidth="sm">
+          <Grid item xs={12} md={6} maxWidth="sm">
             <Grid item xs={12}>
               <Typography variant="body1">Full Name</Typography>
               <TextField
@@ -112,11 +120,6 @@ const ContactForm = () => {
                 size="small"
                 fullWidth
                 variant="outlined"
-                InputProps={{
-                  style: {
-                    borderRadius: '0px',
-                  },
-                }}
                 style={{ maxWidth: '100%' }}
               />
             </Grid>
@@ -128,39 +131,97 @@ const ContactForm = () => {
                 size="small"
                 fullWidth
                 variant="outlined"
-                InputProps={{
-                  style: {
-                    borderRadius: '0px',
-                  },
-                }}
               />
             </Grid>
             <Grid item xs={12} marginTop={5}>
               <Typography variant="body1">Message</Typography>
-              <textarea
+              <TextField
+                multiline
                 id="outlined-basic"
                 size="small"
                 fullWidth
                 variant="outlined"
+                placeholder="Type your message"
                 style={{ borderColor: '#b8bcc2' }}
-                cols={70}
-                rows={8}
-                InputProps={{
-                  style: {
-                    borderRadius: '0px',
-                  },
-                }}
+                rows={4}
               />
             </Grid>
             <Grid item xs={12} marginTop={5}>
-              <Button
-                variant="contained"
-                style={{ borderRadius: '0px', width: '100%' }}
-              >
+              <Button variant="contained" fullWidth>
                 Send Message
               </Button>
             </Grid>
           </Grid>
+        </Grid>
+      </Container>
+    </>
+  )
+}
+
+const featureArray = [
+  {
+    icon: AiFillThunderbolt,
+    title: 'Real-Time Tracking',
+    description:
+      'Instantly monitor and update inventory levels for precise stock information, facilitating prompt decision-making and operational efficiency.',
+  },
+  {
+    icon: AiFillThunderbolt,
+    title: 'Automated Alerts',
+    description:
+      'Receive notifications promptly regarding low stock, overstock, or expiring items, preventing potential issues and enabling proactive inventory management',
+  },
+  {
+    icon: AiFillThunderbolt,
+    title: 'Barcode Scanning',
+    description:
+      'Simplify data entry with efficient barcode scanning, reducing errors and improving accuracy in item identification for streamlined inventory processes.',
+  },
+  {
+    icon: AiFillThunderbolt,
+    title: 'Order Management',
+    description:
+      'Streamline order processing, shipment tracking, and fulfillment within the portal for efficient customer order handling and smooth workflow.',
+  },
+  {
+    icon: AiFillThunderbolt,
+    title: 'Multi-Location Support',
+    description:
+      'Centralize control for managing inventory across locations, optimizing efficiency by providing a unified view and facilitating seamless stock movement.',
+  },
+  {
+    icon: AiFillThunderbolt,
+    title: 'User Permissions',
+    description:
+      'Ensure data security with role-based access control, restricting portal access based on user roles, safeguarding sensitive information',
+  },
+]
+
+const Feature = () => {
+  return (
+    <>
+      <Container sx={{ mt: 15, mb: 15 }}>
+        <Typography variant="h3" textAlign={'center'}>
+          Built to empover every team 😎
+        </Typography>
+        <Typography variant="body1" textAlign={'center'} marginBottom={8}>
+          to manage and
+        </Typography>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          spacing={15}
+        >
+          {featureArray.map((pts, i) => (
+            <Grid key={i} item xs={12} md={6} lg={4} textAlign={'center'}>
+              <pts.icon style={{ width: '50px', height: '50px' }} />
+              <Typography variant="h5" fontWeight={'bold'}>
+                {pts.title}
+              </Typography>
+              <Typography variant="body1">{pts.description}</Typography>
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </>
@@ -240,6 +301,7 @@ const Hero = () => {
       </Box>
       <Info />
       <About />
+      <Feature />
       <ContactForm />
     </>
   )
