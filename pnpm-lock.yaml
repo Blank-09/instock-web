@@ -35,6 +35,9 @@ dependencies:
   express:
     specifier: ^4.18.2
     version: 4.18.2
+  faker:
+    specifier: ^6.6.6
+    version: 6.6.6
   json-server:
     specifier: ^0.17.4
     version: 0.17.4
@@ -73,6 +76,9 @@ dependencies:
     version: 0.11.0
 
 devDependencies:
+  '@faker-js/faker':
+    specifier: ^8.3.1
+    version: 8.3.1
   '@types/express':
     specifier: ^4.17.21
     version: 4.17.21
@@ -647,6 +653,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@faker-js/faker@8.3.1:
+    resolution: {integrity: sha512-FdgpFxY6V6rLZE9mmIBb9hM0xpfvQOSNOLnzolzKwsE1DH+gC7lEKV1p1IbR0lAYyvYd5a4u3qWJzowUkw1bIw==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+    dev: true
 
   /@floating-ui/core@1.5.0:
     resolution: {integrity: sha512-kK1h4m36DQ0UHGj5Ah4db7R0rHemTqqO0QLvUqi1/mUUp3LuAWbWxdxSIf/XsnH9VS6rRVPLJCncjRzUvyCLXg==}
@@ -1694,6 +1705,10 @@ packages:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /faker@6.6.6:
+    resolution: {integrity: sha512-9tCqYEDHI5RYFQigXFwF1hnCwcWCOJl/hmll0lr5D2Ljjb0o4wphb69wikeJDz5qCEzXCoPvG6ss5SDP6IfOdg==}
     dev: false
 
   /fill-range@7.0.1:
