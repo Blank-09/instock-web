@@ -65,7 +65,6 @@ const router = createBrowserRouter([
       },
       {
         path: '/user/report',
-        // element: <FileUpload />,
         Component: React.lazy(() => import('../pages/report')),
       },
     ],
