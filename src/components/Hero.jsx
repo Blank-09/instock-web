@@ -18,39 +18,17 @@ import DoneIcon from '@mui/icons-material/Done'
 import { AiFillThunderbolt } from 'react-icons/ai'
 
 const infoData = [
-  {
-    title: '70+',
-    subtitle: 'Clients',
-  },
-  {
-    title: '89K',
-    subtitle: 'Followers on social media',
-  },
-  {
-    title: '3',
-    subtitle: 'Published books',
-  },
-  {
-    title: '8',
-    subtitle: 'TED talks',
-  },
-  {
-    title: '36',
-    subtitle: 'Years of experience',
-  },
-  {
-    title: '10+',
-    subtitle: 'workshops',
-  },
+  { title: '70+', subtitle: 'Clients' },
+  { title: '89K', subtitle: 'Followers on social media' },
+  { title: '30+', subtitle: 'Published books' },
+  { title: '18+', subtitle: 'TED talks' },
+  { title: '12+', subtitle: 'Years of experience' },
+  { title: '10+', subtitle: 'workshops' },
 ]
 
 const Info = () => {
   return (
-    <Container
-      sx={{
-        my: 8,
-      }}
-    >
+    <Container sx={{ my: 8 }}>
       <Box
         sx={{
           bgcolor: 'primary.main',
