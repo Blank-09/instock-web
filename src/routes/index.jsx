@@ -11,6 +11,7 @@ import Logout from '../pages/Logout'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 // import FileUpload from '../components/FileUpload'
+import ProfileDisplay from '../pages/Profile'
 import Footer from '../components/Footer'
 
 // React Router
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         Component: React.lazy(() => import('../pages/Inventory')),
       },
       {
+        path: '/user/orders',
+        Component: React.lazy(() => import('../pages/Orders')),
+      },
+      {
+        path: '/user/customers',
+        Component: React.lazy(() => import('../pages/Customers')),
+      },
+      {
         path: '/user/upload',
         Component: React.lazy(() => import('../components/FileUpload')),
       },
@@ -69,6 +78,10 @@ const router = createBrowserRouter([
         Component: React.lazy(() => import('../pages/Profile')),
       },
     ],
+  },
+  {
+    path: '/profile',
+    element: <ProfileDisplay />,
   },
   {
     path: '/register',

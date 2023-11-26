@@ -23,7 +23,7 @@ export default function ProductItems() {
 
       renderCell: (cellData) => {
         console.log('the cell data is : ', cellData.row.name)
-        return <Product productName={cellData.row.name} />
+        return <Product {...cellData.row} />
       },
     },
     {
@@ -39,7 +39,7 @@ export default function ProductItems() {
       width: 150,
       description: 'price of the product',
       headerClassName: 'bold-header',
-      valueGetter: (params) => '$' + params.row.stock,
+      valueGetter: (params) => '₹' + params.row.price,
     },
     {
       field: 'stock',
@@ -56,14 +56,14 @@ export default function ProductItems() {
   return (
     <div
       style={{
-        height: '630px',
+        height: 'calc(100vh - 180px)',
         width: '100%',
         overflow: 'auto',
-        marginLeft: '7px',
+        // marginLeft: '7px',
       }}
     >
       <DataGrid
-        sx={{ borderRadius: 5 }}
+        sx={{ borderRadius: 3, pl: 3, '--unstable_DataGrid-headWeight': 600 }}
         rows={productList}
         columns={columns}
         initialState={{
@@ -72,7 +72,7 @@ export default function ProductItems() {
           },
         }}
         pageSizeOptions={[5, 10, 20]}
-        checkboxSelection
+        // checkboxSelection
       />
     </div>
   )

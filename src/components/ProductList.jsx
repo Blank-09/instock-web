@@ -1,4 +1,18 @@
-const productList = [
+import { faker } from '@faker-js/faker'
+const productList = Array(100)
+  .fill()
+  .map((_, i) => ({
+    id: i + 1,
+    image: faker.image.url(),
+    name: faker.commerce.product(),
+    category: faker.commerce.productMaterial(),
+    price: faker.commerce.price({ min: 0, max: 10000 }),
+    stock: faker.number.int({ min: 0, max: 10000 }),
+  }))
+
+// console.log(productList)
+
+const data = [
   {
     id: 1,
     name: 'Cap',
