@@ -234,8 +234,15 @@ function ProfileCard() {
           src="/profile-img.png"
         />
         <Stack mb={1}>
-          <Typography variant="h4">Priyanshu T</Typography>
-          <Typography variant="body2">Founder of AspireCoders</Typography>
+          <Typography variant="h4">
+            {JSON.parse(localStorage.Credentials).firstName}{' '}
+            {JSON.parse(localStorage.Credentials).lastName}
+          </Typography>
+          <Typography variant="body2">
+            {JSON.parse(localStorage.Credentials).firstName === 'Priyanshu'
+              ? 'Founder of AspireCoders'
+              : 'Member of AspireCoders'}
+          </Typography>
         </Stack>
         <Typography variant="h6" mb={4}>
           India
