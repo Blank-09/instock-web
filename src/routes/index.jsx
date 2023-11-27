@@ -71,7 +71,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/user/reports',
-        Component: React.lazy(() => import('../pages/Report')),
+        Component: React.lazy(() => import('../pages/report')),
+      },
+      {
+        path: '/user/growth',
+        Component: React.lazy(() => import('../pages/growth')),
       },
       {
         path: '/user/profile',
