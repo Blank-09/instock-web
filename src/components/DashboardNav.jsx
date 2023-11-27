@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography'
 import { useDispatch } from 'react-redux'
 import { styled, alpha } from '@mui/material/styles'
 import { toggleSidebar } from '../features/ui/uiSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,10 +60,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
+const menuItems = [
+  {
+    path: '/user/profile',
+    title: 'Profile',
+  },
+  {
+    path: '/user/settings',
+    title: 'My Account',
+  },
+  {
+    path: '/logout',
+    title: 'Logout',
+  },
+]
+
 export default function DashboardNav() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -101,8 +118,17 @@ export default function DashboardNav() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {menuItems.map((item, index) => (
+        <MenuItem
+          key={index}
+          onClick={() => {
+            navigate(item.path)
+            handleMenuClose()
+          }}
+        >
+          {item.title}
+        </MenuItem>
+      ))}
     </Menu>
   )
 
@@ -159,7 +185,7 @@ export default function DashboardNav() {
   )
 
   return (
-    <Box sx={{ flexGrow: 1, zIndex: '20' }} position="sticky" top="0">
+    <Box sx={{ flexGrow: 1, zIndex: '2000' }} position="sticky" top="0">
       <AppBar
         position="static"
         component="nav"

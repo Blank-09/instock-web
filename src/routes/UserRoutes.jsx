@@ -45,7 +45,7 @@ export default function UserRoutes() {
         <Grid
           sx={{
             height: '100%',
-            zIndex: 15,
+            zIndex: 1250,
             transition: 'margin 0.3s',
             width: '350px',
             maxWidth: '95%',
@@ -61,7 +61,7 @@ export default function UserRoutes() {
           <SideBar />
         </Grid>
         <Backdrop
-          sx={{ zIndex: 12, display: { xs: 'block', md: 'none' } }}
+          sx={{ zIndex: 1200, display: { xs: 'block', md: 'none' } }}
           open={isSidebarOpen}
           onClick={() => dispatch(toggleSidebar())}
         />

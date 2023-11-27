@@ -5,7 +5,25 @@
       "lastName": "S",
       "email": "skavinspravin123@gmail.com",
       "password": "kavin123",
-      "id": 1
+      "id": 1,
+      "Inventory": [
+        {
+          "id": 1,
+          "image": "",
+          "name": "dsadasd",
+          "category": "dsa",
+          "price": 12.2,
+          "stock": 12
+        },
+        {
+          "id": 1,
+          "image": "",
+          "name": "dsadsad",
+          "category": "dsadsa",
+          "price": 12.2,
+          "stock": 12
+        }
+      ]
     },
     {
       "firstName": "Priyanshu",
