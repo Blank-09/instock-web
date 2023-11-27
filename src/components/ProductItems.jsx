@@ -56,7 +56,7 @@ export default function ProductItems() {
   return (
     <div
       style={{
-        height: 'calc(100vh - 180px)',
+        height: 'calc(100vh - 230px)',
         width: '100%',
         overflow: 'auto',
         // marginLeft: '7px',
