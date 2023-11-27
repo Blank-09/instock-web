@@ -50,13 +50,11 @@ const router = createBrowserRouter([
     element: <UserRoutes />,
     children: [
       {
-        path: '/user',
-        // element: <Home />,
+        path: '/user/home',
         Component: React.lazy(() => import('../pages/Home')),
       },
       {
         path: '/user/inventory',
-        // element: <Inventory />,
         Component: React.lazy(() => import('../pages/Inventory')),
       },
       {
@@ -69,8 +67,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/user/upload',
-        // element: <FileUpload />,
         Component: React.lazy(() => import('../components/FileUpload')),
+      },
+      {
+        path: '/user/reports',
+        Component: React.lazy(() => import('../pages/report')),
+      },
+      {
+        path: '/user/growth',
+        Component: React.lazy(() => import('../pages/growth')),
+      },
+      {
+        path: '/user/profile',
+        Component: React.lazy(() => import('../pages/Profile')),
       },
     ],
   },

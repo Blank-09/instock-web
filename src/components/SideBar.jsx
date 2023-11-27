@@ -58,7 +58,7 @@ export default function SideBar() {
               marginTop: index + 1 === sidebarLinks.length ? 'auto' : 0,
             }}
             disablePadding
-            dense
+            // dense
           >
             <ListItemButton
               sx={{ borderRadius: '0 50px 50px 0', mb: 1, px: 2, py: 1 }}

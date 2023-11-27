@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 
 // MUI
 import Backdrop from '@mui/material/Backdrop'
@@ -11,13 +11,13 @@ import Typography from '@mui/material/Typography'
 // Components
 import SideBar from '../components/SideBar'
 import DashboardNav from '../components/DashboardNav'
+import Loader from '../components/Loader'
 
 // Others
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleSidebar } from '../features/ui/uiSlice'
 import { toast } from 'sonner'
-import { Suspense } from 'react'
 
 export default function UserRoutes() {
   const navigate = useNavigate()
@@ -28,6 +28,8 @@ export default function UserRoutes() {
     if (localStorage.getItem('Authenticated') !== 'true') {
       navigate('/login')
       toast.error('You need to login first')
+    } else if (window.location.pathname.match(/^\/user\/?$/)) {
+      navigate('/user/home')
     }
   }, [])
 
@@ -71,9 +73,10 @@ export default function UserRoutes() {
           xl={10}
           width="100%"
           sx={{ height: '100%', overflow: 'auto' }}
+          bgcolor="#fafafa"
         >
           <DashboardNav />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
           {/* <Box sx={{ p: 4 }}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
@@ -9,191 +9,261 @@ import Paper from '@mui/material/Paper'
 import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { styled } from '@mui/material/styles'
+import Avatar from '@mui/material/Avatar'
+import Divider from '@mui/material/Divider'
+import Stack from '@mui/material/Stack'
 
-import logo from '../assets/react.svg'
+function GeneralInfo() {
+  const [data, setData] = useState({
+    firstname: '',
+    lastname: '',
+    birthday: '',
+    email: '',
+    phoneno: '',
+    gender: 0,
+  })
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  // color: theme.palette.text.secondary,
-}))
+  function handleChange(e) {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
 
-function Details() {
   return (
-    <>
-      <Item sx={{ p: 3 }}>
-        <Typography variant="h5" sx={{ textAlign: 'left', mt: 1 }}>
-          General Informations
-        </Typography>
-        <Grid container spacing={3} mt={1}>
-          <Grid item xs={12} md={12} lg={6}>
-            <Typography variant="h6">First Name</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="Enter your first name"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={6}>
-            <Typography variant="h6">Last Name</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="Enter your last name"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={6}>
-            <Typography variant="h6">Birthday</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="dd/MM/yyy"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={6}>
-            <Typography variant="h6">Gender</Typography>
-            <FormControl fullWidth>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                size="small"
-                sx={{ mt: 1 }}
-                value={1}
-              >
-                <MenuItem selected>Select Gender</MenuItem>
-                <MenuItem value={10}>Male</MenuItem>
-                <MenuItem value={20}>Female</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={12} lg={6}>
-            <Typography variant="h6">Email</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="name@company.com"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={6}>
-            <Typography variant="h6">Phone Number</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="+12-345 678 910"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-        </Grid>
-
-        {/* Address  */}
-
-        <Typography variant="h5" sx={{ textAlign: 'left', mt: 5 }}>
-          Address
-        </Typography>
-        <Grid container spacing={3} mt={1}>
-          <Grid item xs={12} md={12} lg={8}>
-            <Typography variant="h6">Address</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="Enter your home Address"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={4}>
-            <Typography variant="h6">Number</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="No."
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3} mt={1}>
-          <Grid item xs={4} md={4} lg={4}>
-            <Typography variant="h6">City</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="City"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-          <Grid item xs={4} md={4} lg={4}>
-            <Typography variant="h6">ZIP</Typography>
-            <TextField
-              id="outlined-basic"
-              placeholder="ZIP"
-              size="small"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 1 }}
-            />
-          </Grid>
-        </Grid>
-        <Grid sx={4} mt={3}>
-          <Button variant="contained">Save All</Button>
-        </Grid>
-      </Item>
-    </>
-  )
-}
-
-function ProfileDisplay() {
-  return (
-    <>
-      <Item>
-        <Grid container xs={12}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 2, pl: 1 }}>
-            Profile
-          </Typography>
-        </Grid>
-        <div style={{ marginTop: '50px', textAlign: 'center' }}>
-          <img
-            src={logo}
-            width="130px"
-            height="130px"
-            style={{ border: '3px solid lightblue', borderRadius: '70px' }}
+    <Paper sx={{ p: 4, borderRadius: 2 }} variant="outlined">
+      <Typography variant="h5" sx={{ textAlign: 'left', mt: 1 }}>
+        General Informations
+      </Typography>
+      <Grid container spacing={3} mt={1}>
+        <Grid item xs={12} md={12} lg={6}>
+          <Typography variant="h6">First Name</Typography>
+          <TextField
+            name="firstname"
+            onChange={handleChange}
+            value={data.firstname}
+            placeholder="Enter your first name"
+            size="small"
+            variant="outlined"
+            sx={{ mt: 1 }}
+            fullWidth
           />
-        </div>
-        <Typography></Typography>
-      </Item>
-    </>
+        </Grid>
+        <Grid item xs={12} md={12} lg={6}>
+          <Typography variant="h6">Last Name</Typography>
+          <TextField
+            name="lastname"
+            onChange={handleChange}
+            value={data.lastname}
+            placeholder="Enter your last name"
+            size="small"
+            variant="outlined"
+            sx={{ mt: 1 }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} md={12} lg={6}>
+          <Typography variant="h6">Birthday</Typography>
+          <TextField
+            name="birthday"
+            onChange={handleChange}
+            value={data.birthday}
+            placeholder="dd/mm/yyyy"
+            type="date"
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+        <Grid item xs={12} md={12} lg={6}>
+          <Typography variant="h6">Gender</Typography>
+          <FormControl fullWidth>
+            <Select
+              name="gender"
+              size="small"
+              sx={{ mt: 1 }}
+              value={data.gender}
+              onChange={handleChange}
+            >
+              <MenuItem selected disabled value={0}>
+                Select Gender
+              </MenuItem>
+              <MenuItem value={1}>Male</MenuItem>
+              <MenuItem value={2}>Female</MenuItem>
+              <MenuItem value={3}>Others</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} md={12} lg={6}>
+          <Typography variant="h6">Email</Typography>
+          <TextField
+            name="email"
+            onChange={handleChange}
+            value={data.email}
+            placeholder="example@company.com"
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+        <Grid item xs={12} md={12} lg={6}>
+          <Typography variant="h6">Phone Number</Typography>
+          <TextField
+            name="phoneno"
+            onChange={handleChange}
+            value={data.phoneno}
+            placeholder="+12-345 678 910"
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+      </Grid>
+
+      {/* Address  */}
+
+      <Typography variant="h5" sx={{ textAlign: 'left', mt: 5 }}>
+        Address
+      </Typography>
+      <Grid container spacing={3} mt={1}>
+        <Grid item xs={12} md={12} lg={8}>
+          <Typography variant="h6">Permanent Address</Typography>
+          <TextField
+            placeholder="Enter your home Address"
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+        <Grid item xs={12} md={12} lg={4}>
+          <Typography variant="h6">Number</Typography>
+          <TextField
+            placeholder="No."
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={3} mt={1}>
+        <Grid item xs={4} md={4} lg={4}>
+          <Typography variant="h6">City</Typography>
+          <TextField
+            placeholder="City"
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+        <Grid item xs={4} md={4} lg={4}>
+          <Typography variant="h6">ZIP</Typography>
+          <TextField
+            placeholder="ZIP"
+            size="small"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 1 }}
+          />
+        </Grid>
+      </Grid>
+      <Grid item xs={4} mt={3}>
+        <Button variant="contained">Save All</Button>
+      </Grid>
+    </Paper>
   )
 }
 
-export default function FullWidthGrid() {
+const StatsComponent = ({ stats, statsLabel }) => {
+  return (
+    <Stack sx={{ p: 2 }} flex="1" textAlign="center">
+      <Typography variant="h6">{stats}</Typography>
+      <Typography variant="body1">{statsLabel}</Typography>
+    </Stack>
+  )
+}
+
+const stats = [
+  {
+    stats: '80k',
+    statsLabel: 'Shipped',
+  },
+  {
+    stats: '803k',
+    statsLabel: 'Delivered',
+  },
+  {
+    stats: '1.4k',
+    statsLabel: 'Picked',
+  },
+]
+
+function ProfileCard() {
+  return (
+    <Paper variant="outlined" sx={{ overflow: 'hidden' }}>
+      <Stack sx={{ position: 'relative', textAlign: 'center' }}>
+        <img
+          style={{
+            marginBottom: '4.5rem',
+            width: '100%',
+            height: '200px',
+            backgroundColor: '#f0f0f0',
+          }}
+          height={600}
+          // src="https://source.unsplash.com/random/372x200"
+          src="https://png.pngtree.com/thumb_back/fh260/background/20190828/pngtree-dark-vector-abstract-background-image_302715.jpg"
+          alt="background card profile"
+        />
+        <Avatar
+          sx={{
+            position: 'absolute',
+            transform: 'translate(-50%, -50%)',
+            left: '50%',
+            top: '50%',
+            width: '7rem',
+            height: '7rem',
+            border: '0.3rem solid white',
+            borderRadius: '50%',
+          }}
+          alt="React"
+          src="/profile-img.png"
+        />
+        <Stack mb={1}>
+          <Typography variant="h4">Priyanshu T</Typography>
+          <Typography variant="body2">Founder of AspireCoders</Typography>
+        </Stack>
+        <Typography variant="h6" mb={4}>
+          India
+        </Typography>
+        <Divider />
+      </Stack>
+      <Stack direction="row" p={1}>
+        {stats.map((item, i) => (
+          <StatsComponent
+            key={i}
+            stats={item.stats}
+            statsLabel={item.statsLabel}
+          />
+        ))}
+      </Stack>
+    </Paper>
+  )
+}
+
+export default function Profile() {
   return (
     <Container sx={{ p: 3 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4} lg={4}>
-          <ProfileDisplay />
+          <ProfileCard />
         </Grid>
         <Grid item xs={12} md={8} lg={8}>
-          <Details />
+          <GeneralInfo />
         </Grid>
       </Grid>
     </Container>
