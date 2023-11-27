@@ -14,8 +14,8 @@ import MenuItem from '@mui/material/MenuItem'
 import InventoryIcon from '@mui/icons-material/Inventory'
 
 import { Link } from 'react-router-dom'
-import { pages, settings } from '../constants/links'
 import { useDispatch } from 'react-redux'
+import { pages, settings } from '../constants/links'
 import { toggleSidebar } from '../features/ui/uiSlice'
 import { MyProvider } from '../App'
 

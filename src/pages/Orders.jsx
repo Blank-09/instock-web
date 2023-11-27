@@ -1,7 +1,7 @@
 import React from 'react'
-import { Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import OrderList from '../components/OrderList'
-import { Box } from '@mui/material'
 
 const Order = () => {
   return (

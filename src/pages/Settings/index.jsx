@@ -1,23 +1,21 @@
-import {
-  Container,
-  Paper,
-  Typography,
-  Divider,
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-  Switch,
-  Stack,
-  Fab,
-  Box,
-  Grid,
-} from '@mui/material'
+import Container from '@mui/material/Container'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import FormControl from '@mui/material/FormControl'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
+import Stack from '@mui/material/Stack'
+import Fab from '@mui/material/Fab'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 
-import LanguagePreferences from './LanguagePreferences' // Replace with your actual path
-import DateTimeFormatSettings from './DateTimeFormatSettings' // Replace with your actual path
-import CurrencySettings from './CurrencySettings' // Replace with your actual path
-import UnitOfMeasurementSettings from './UnitOfMeasurementSettings' // Replace with your actual path
-import DefaultWarehouseSettings from './DefaultWarehouseSettings' // Replace with your actual path
+import LanguagePreferences from './LanguagePreferences'
+import DateTimeFormatSettings from './DateTimeFormatSettings'
+import CurrencySettings from './CurrencySettings'
+import UnitOfMeasurementSettings from './UnitOfMeasurementSettings'
+import DefaultWarehouseSettings from './DefaultWarehouseSettings'
 
 import React from 'react'
 import SaveIcon from '@mui/icons-material/Save'

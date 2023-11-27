@@ -10,5 +10,5 @@ export const settings = [
   { path: '/user/profile',   name: 'Profile'   },
   { path: '/user/settings',  name: 'Account'   },
   { path: '/user/home',      name: 'Dashboard' },
-  { path: '/logout',    name: 'Logout'    },
+  { path: '/logout',         name: 'Logout'    },
 ]

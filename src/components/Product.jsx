@@ -1,4 +1,6 @@
-import { Avatar, Typography } from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import Typography from '@mui/material/Typography'
+
 export default function Product({ id, image, name, category, price, stock }) {
   return (
     <>

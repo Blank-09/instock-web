@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import styled from '@mui/material/styles/styled'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import axios from 'axios'
 
-import { styled } from '@mui/material/styles'
 import { toast } from 'sonner'
-import { Box } from '@mui/material'
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',

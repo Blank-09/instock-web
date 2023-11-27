@@ -1,7 +1,11 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUnitOfMeasurement } from '../../features/settings/settingsSlice'
-import { MenuItem, Select, FormControl, InputLabel } from '@mui/material'
+
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
 
 const UnitOfMeasurementSettings = () => {
   const unitOfMeasurement = useSelector(

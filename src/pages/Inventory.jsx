@@ -1,17 +1,17 @@
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
-  DialogActions,
-} from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
+import TextField from '@mui/material/TextField'
+import DialogActions from '@mui/material/DialogActions'
+
 import AddIcon from '@mui/icons-material/Add'
 import ProductItems from '../components/ProductItems'
 import { useState } from 'react'
+
 const Inventory = (props) => {
   const [open, setOpen] = useState(false)
 
