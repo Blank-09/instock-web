@@ -115,6 +115,7 @@ export default function DashboardNav() {
         vertical: 'top',
         horizontal: 'right',
       }}
+      sx={{ zIndex: 2500 }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >

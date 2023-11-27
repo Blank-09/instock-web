@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import React, { Suspense } from 'react'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
@@ -257,7 +257,7 @@ const GrowthApexChart = () => {
 }
 function GrowthPage() {
   return (
-    <div>
+    <Container sx={{ mt: 5 }}>
       <Typography
         variant="h5"
         fontWeight={'bold'}
@@ -308,7 +308,7 @@ function GrowthPage() {
           </Grid>
         </Grid>
       </div>
-    </div>
+    </Container>
   )
 }
 

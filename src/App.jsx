@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext } from 'react'
 
 import CssBaseline from '@mui/material/CssBaseline'
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
@@ -18,14 +18,20 @@ import axios from 'axios'
 window.toast = toast
 window.axios = axios
 
+export const MyProvider = createContext({})
+
 const App = () => {
   return (
     <ReduxProvider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Toaster richColors />
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <MyProvider.Provider
+        value={JSON.parse(localStorage.getItem('Credentials'))}
+      >
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Toaster richColors />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </MyProvider.Provider>
     </ReduxProvider>
   )
 }

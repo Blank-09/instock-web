@@ -29,11 +29,11 @@ export const sideBarLinks = [
     url: '/customers',
     icon: PeopleAltOutlined,
   },
-  {
-    title: 'Revenue',
-    url: '/revenue',
-    icon: MonetizationOnOutlined,
-  },
+  // {
+  //   title: 'Revenue',
+  //   url: '/revenue',
+  //   icon: MonetizationOnOutlined,
+  // },
   {
     title: 'Growth',
     url: '/growth',

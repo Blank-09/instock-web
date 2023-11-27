@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts'
 
@@ -904,7 +904,7 @@ function DayWiseComparision() {
 }
 function Report() {
   return (
-    <>
+    <Container>
       <Typography
         variant="h5"
         fontWeight={'bold'}
@@ -928,7 +928,7 @@ function Report() {
       <YearComparation />
       <MonthWiseComparition />
       <DayWiseComparision />
-    </>
+    </Container>
   )
 }
 
