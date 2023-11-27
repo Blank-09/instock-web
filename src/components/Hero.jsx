@@ -139,7 +139,7 @@ const Feature = () => {
           Built to empover every team 😎
         </Typography>
         <Typography variant="body1" textAlign={'center'} marginBottom={8}>
-          to manage and
+          to manage and Work Efficiently
         </Typography>
         <Grid
           container
