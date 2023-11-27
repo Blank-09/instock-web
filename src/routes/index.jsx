@@ -77,11 +77,11 @@ const router = createBrowserRouter([
         path: '/user/profile',
         Component: React.lazy(() => import('../pages/Profile')),
       },
+      {
+        path: '/user/settings',
+        Component: React.lazy(() => import('../pages/Settings')),
+      },
     ],
-  },
-  {
-    path: '/profile',
-    element: <ProfileDisplay />,
   },
   {
     path: '/register',
