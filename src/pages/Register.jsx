@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { createClient } from '@supabase/supabase-js'
 // MUI
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -29,14 +29,17 @@ import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
 export default function Register() {
+  const supabase = createClient(
+    'https://pkacdlncihpwukzxdacd.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrYWNkbG5jaWhwd3VrenhkYWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI2NTQ0NzksImV4cCI6MjAxODIzMDQ3OX0.ddnYa_ZE2SAdBN3gDshavkVmbeC5hqwJ3mxt9OuHplA'
+  )
+  const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('Authenticated') === 'true') {
       navigate('/user')
       toast.message('You are already logged in')
     }
   }, [])
-
-  const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
 
   const [allowExtraEmails, setAllowExtraEmails] = useState(false)
@@ -70,23 +73,21 @@ export default function Register() {
     if (!allowExtraEmails) {
       return setMessage('Agree our terms and conditions')
     }
-
-    const res = await axios.get(`/users?email=${body.email}`)
-    const userExists = res.data.length > 0
-
-    if (userExists) {
-      return setMessage('User already exists')
-    }
-
     try {
-      const response = await axios.post('/users', body)
-      const res = response.data
-      console.log(res)
-
+      const { user, error } = await supabase.auth.signUp({
+        email: body.email,
+        password: body.password,
+        options: {
+          emailRedirectTo: 'http://localhost:3000/home',
+        },
+      })
+      if (error) {
+        throw error
+      }
       navigate('/login')
       toast.success('User registered successfully')
     } catch (error) {
-      setMessage(String(error))
+      setMessage(`Error: ${String(error.message)}`)
       console.error(error)
     }
   }
