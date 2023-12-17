@@ -1,19 +1,20 @@
+import React from 'react'
+
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Typography from '@mui/material/Typography'
+import DeleteOutline from '@mui/icons-material/DeleteOutline'
+
 import { faker } from '@faker-js/faker'
-import { Delete, DeleteOutline } from '@mui/icons-material'
-import {
-  Box,
-  Button,
-  IconButton,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material'
-import React, { useState } from 'react'
+
 function generateIndianPhoneNumber() {
   let number = '9'
   for (let i = 0; i < 9; i++) {
@@ -21,11 +22,14 @@ function generateIndianPhoneNumber() {
   }
   return '+91' + number
 }
+
 export default function OrderModal({ order }) {
-  console.log('the order lists are :\n', order.products[0].product.name)
+  // console.log('the order lists are :\n', order.products[0].product.name)
+
   const handleDeleteProductFromOrder = (orderId, productId) => {
     console.log('delete the product : ', productId, ' from the order ', orderId)
   }
+
   const tableRows = order.products.map((orderProduct, index) => {
     return (
       <TableRow key={index}>
@@ -44,7 +48,8 @@ export default function OrderModal({ order }) {
       </TableRow>
     )
   })
-  console.log(tableRows)
+  // console.log(tableRows)
+
   return (
     <Box
       sx={{

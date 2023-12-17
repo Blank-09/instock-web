@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
+import { MyProvider } from '../App'
 
 function GeneralInfo() {
   const [data, setData] = useState({
@@ -204,6 +205,8 @@ const stats = [
 ]
 
 function ProfileCard() {
+  const context = useContext(MyProvider)
+
   return (
     <Paper variant="outlined" sx={{ overflow: 'hidden' }}>
       <Stack sx={{ position: 'relative', textAlign: 'center' }}>
@@ -231,17 +234,19 @@ function ProfileCard() {
             borderRadius: '50%',
           }}
           alt="React"
-          src="/profile-img.png"
+          src={
+            (context && context?.profilePicture) ||
+            'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+          }
         />
         <Stack mb={1}>
           <Typography variant="h4">
-            {JSON.parse(localStorage.Credentials).firstName}{' '}
-            {JSON.parse(localStorage.Credentials).lastName}
+            {context.firstName} {context.lastName}
           </Typography>
           <Typography variant="body2">
-            {JSON.parse(localStorage.Credentials).firstName === 'Priyanshu'
+            {context.firstName === 'Priyanshu'
               ? 'Founder of AspireCoders'
-              : 'Member of AspireCoders'}
+              : 'User'}
           </Typography>
         </Stack>
         <Typography variant="h6" mb={4}>

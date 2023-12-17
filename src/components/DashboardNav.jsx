@@ -15,10 +15,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import Typography from '@mui/material/Typography'
 
-import { useDispatch } from 'react-redux'
 import { styled, alpha } from '@mui/material/styles'
-import { toggleSidebar } from '../features/ui/uiSlice'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
+import { toggleSidebar } from '../features/ui/uiSlice'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -115,6 +116,7 @@ export default function DashboardNav() {
         vertical: 'top',
         horizontal: 'right',
       }}
+      sx={{ zIndex: 2500 }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >

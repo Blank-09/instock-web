@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -14,13 +14,15 @@ import MenuItem from '@mui/material/MenuItem'
 import InventoryIcon from '@mui/icons-material/Inventory'
 
 import { Link } from 'react-router-dom'
-import { pages, settings } from '../constants/links'
 import { useDispatch } from 'react-redux'
+import { pages, settings } from '../constants/links'
 import { toggleSidebar } from '../features/ui/uiSlice'
+import { MyProvider } from '../App'
 
 function Navbar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
+  const context = useContext(MyProvider)
 
   const dispatch = useDispatch()
 
@@ -137,38 +139,40 @@ function Navbar(props) {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/2.jpg"
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-              sx={{ mt: '45px', color: 'inherit' }}
-              keepMounted
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  component={Link}
-                  to={setting.path}
-                  key={setting.path}
-                  onClick={handleCloseUserMenu}
-                  sx={{ textAlign: 'center' }}
-                >
-                  {setting.name}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {localStorage.getItem('Authenticated') === 'true' && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    alt={context.firstName + ' ' + context.lastName}
+                    src={context.profilePicture}
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                sx={{ mt: '45px', color: 'inherit' }}
+                keepMounted
+              >
+                {settings.map((setting) => (
+                  <MenuItem
+                    component={Link}
+                    to={setting.path}
+                    key={setting.path}
+                    onClick={handleCloseUserMenu}
+                    sx={{ textAlign: 'center' }}
+                  >
+                    {setting.name}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

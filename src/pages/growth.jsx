@@ -1,9 +1,12 @@
-import { Typography } from '@mui/material'
 import React, { Suspense } from 'react'
+
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
-import { Grid } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+
+import { useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts'
 
 const ApexCharts = React.lazy(() => import('react-apexcharts'))
@@ -257,7 +260,7 @@ const GrowthApexChart = () => {
 }
 function GrowthPage() {
   return (
-    <div>
+    <Container sx={{ mt: 5 }}>
       <Typography
         variant="h5"
         fontWeight={'bold'}
@@ -308,7 +311,7 @@ function GrowthPage() {
           </Grid>
         </Grid>
       </div>
-    </div>
+    </Container>
   )
 }
 

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
 import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import styled from '@mui/material/styles/styled'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import axios from 'axios'
 
-import { styled } from '@mui/material/styles'
 import { toast } from 'sonner'
 
 const VisuallyHiddenInput = styled('input')({
@@ -19,7 +20,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 })
 
-export default function FileUpload() {
+export default function FileUpload(props) {
   const [url, setUrl] = useState(null)
   const [file, setFile] = useState(null)
 
@@ -48,8 +49,7 @@ export default function FileUpload() {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
-      // UNDONE: Update profile picture in DB
-      const data = response.data
+      await axios.post('/upload', response.data)
 
       toast.success('File uploaded successfully')
     } catch (error) {
@@ -60,14 +60,10 @@ export default function FileUpload() {
   return (
     <>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <Button
-          component="label"
-          variant="contained"
-          startIcon={<CloudUploadIcon />}
-        >
-          Upload file
+        <Box component="label" variant="text" startIcon={<CloudUploadIcon />}>
+          {props.children}
           <VisuallyHiddenInput type="file" onChange={handleFileChange} />
-        </Button>
+        </Box>
 
         <Button type="submit" variant="text">
           Submit

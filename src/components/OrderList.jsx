@@ -1,9 +1,16 @@
-import { DataGrid } from '@mui/x-data-grid'
-import OrderModal from './OrderModel'
-import customers from '../components/ListOrders'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
+import Button from '@mui/material/Button'
+import Avatar from '@mui/material/Avatar'
+import Typography from '@mui/material/Typography'
+
 import { useState } from 'react'
-import { Box, Modal, Button, Avatar, Typography } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
 import { faker } from '@faker-js/faker'
+
+import customers from '../components/ListOrders'
+import OrderModal from './OrderModel'
+
 const OrderList = () => {
   const [order, setOrder] = useState({})
   const [open, setOpen] = useState(false)

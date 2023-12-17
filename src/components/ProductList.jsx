@@ -1,8 +1,10 @@
 import { faker } from '@faker-js/faker'
-const local = localStorage.Credentials
-const myData = JSON.parse(local)
-const response = await axios.get(`/users?email=${myData.email}`)
-const user = response.data[0]
+
+// const local = localStorage.Credentials
+// const myData = JSON.parse(local)
+// const response = await axios.get(`/users?email=${myData.email}`)
+
+// const user = response.data[0]
 let productList = []
 
 productList = Array(100)

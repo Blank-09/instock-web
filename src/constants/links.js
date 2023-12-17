@@ -7,8 +7,8 @@ export const pages = [
 
 /* prettier-ignore */
 export const settings = [
-  { path: '/profile',   name: 'Profile'   },
-  { path: '/account',   name: 'Account'   },
-  { path: '/dashboard', name: 'Dashboard' },
-  { path: '/logout',    name: 'Logout'    },
+  { path: '/user/profile',   name: 'Profile'   },
+  { path: '/user/settings',  name: 'Account'   },
+  { path: '/user/home',      name: 'Dashboard' },
+  { path: '/logout',         name: 'Logout'    },
 ]

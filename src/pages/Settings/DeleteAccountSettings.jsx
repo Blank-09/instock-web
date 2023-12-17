@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Fab,
-} from '@mui/material'
-import { Delete, Garage } from '@mui/icons-material'
+
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import Fab from '@mui/material/Fab'
+import Delete from '@mui/icons-material/Delete'
 
 const DeleteAccountSettings = () => {
   const [open, setOpen] = useState(false)

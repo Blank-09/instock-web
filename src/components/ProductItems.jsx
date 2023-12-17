@@ -1,58 +1,55 @@
-import { Container, Paper, Typography } from '@mui/material'
 import React from 'react'
 import Product from './Product'
 import productList from './ProductList'
 import { DataGrid } from '@mui/x-data-grid'
 
-export default function ProductItems() {
-  const columns = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 90,
-      headerClassName: 'bold-header',
-      description: 'id of the product',
-    },
-    {
-      field: 'product',
-      headerName: 'Product',
-      width: 300,
-      headerClassName: 'bold-header',
-      description: '',
-      //same here we have the cell data which i will get the value of the cells in the tables cellData.row.fieldName
+const columns = [
+  {
+    field: 'id',
+    headerName: 'ID',
+    width: 90,
+    headerClassName: 'bold-header',
+    description: 'id of the product',
+  },
+  {
+    field: 'product',
+    headerName: 'Product',
+    width: 300,
+    headerClassName: 'bold-header',
+    description: '',
+    //same here we have the cell data which i will get the value of the cells in the tables cellData.row.fieldName
 
-      renderCell: (cellData) => {
-        console.log('the cell data is : ', cellData.row.name)
-        return <Product {...cellData.row} />
-      },
+    renderCell: (cellData) => {
+      console.log('the cell data is : ', cellData.row.name)
+      return <Product {...cellData.row} />
     },
-    {
-      field: 'category',
-      headerName: 'Category',
-      width: 200,
-      headerClassName: 'bold-header',
-      description: 'category of the product',
-    },
-    {
-      field: 'price',
-      headerName: 'Price',
-      width: 150,
-      description: 'price of the product',
-      headerClassName: 'bold-header',
-      valueGetter: (params) => '₹' + params.row.price,
-    },
-    {
-      field: 'stock',
-      headerName: 'Stock',
-      headerClassName: 'bold-header',
-      width: 200,
-      description: 'how many items in the stock',
-      valueGetter: (params) => params.row.stock + ' pcs',
-    },
-  ]
-  // const BoldHeader = ({ column }) => (
-  //   <div className="bold-header">{column.headerName}</div>
-  // )
+  },
+  {
+    field: 'category',
+    headerName: 'Category',
+    width: 200,
+    headerClassName: 'bold-header',
+    description: 'category of the product',
+  },
+  {
+    field: 'price',
+    headerName: 'Price',
+    width: 150,
+    description: 'price of the product',
+    headerClassName: 'bold-header',
+    valueGetter: (params) => '₹' + params.row.price,
+  },
+  {
+    field: 'stock',
+    headerName: 'Stock',
+    headerClassName: 'bold-header',
+    width: 200,
+    description: 'how many items in the stock',
+    valueGetter: (params) => params.row.stock + ' pcs',
+  },
+]
+
+export default function ProductItems() {
   return (
     <div
       style={{

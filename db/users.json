@@ -30,7 +30,8 @@
       "lastName": "T",
       "email": "priyanshu9943@gmail.com",
       "password": "123456",
-      "id": 2
+      "id": 2,
+      "profilePicture": "/profile-img.png"
     },
     {
       "firstName": "Mohananth",
@@ -38,6 +39,13 @@
       "email": "mohananthvs18@gmail.com",
       "password": "mohanvs",
       "id": 3
+    },
+    {
+      "firstName": "Priyanshu",
+      "lastName": "T",
+      "email": "test@gmail.com",
+      "password": "123456",
+      "id": 4
     }
   ]
 }
