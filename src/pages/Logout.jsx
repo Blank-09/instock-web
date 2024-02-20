@@ -6,9 +6,6 @@ const Logout = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    async function signOut() {
-      const { error } = await supabase.auth.signOut()
-    }
     localStorage.clear()
     navigate('/')
     // FIXME: Executes two times on logout

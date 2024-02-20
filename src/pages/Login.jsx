@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -21,10 +20,6 @@ import Copyright from '../components/Copyright'
 import { toast } from 'sonner'
 
 export default function Login() {
-  const supabase = createClient(
-    'https://pkacdlncihpwukzxdacd.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrYWNkbG5jaWhwd3VrenhkYWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI2NTQ0NzksImV4cCI6MjAxODIzMDQ3OX0.ddnYa_ZE2SAdBN3gDshavkVmbeC5hqwJ3mxt9OuHplA'
-  )
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -47,18 +42,13 @@ export default function Login() {
       email: email,
       password: password,
     }
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
 
-      if (error) {
-        throw error
-      }
+    try {
+      // TODO: Implement Login API
 
       localStorage.setItem('Authenticated', true)
       localStorage.setItem('Credentials', JSON.stringify(user))
+
       navigate('/user')
     } catch (error) {
       toast.error('Invalid email or password')

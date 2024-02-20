@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
+
 // MUI
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -29,11 +29,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
 export default function Register() {
-  const supabase = createClient(
-    'https://pkacdlncihpwukzxdacd.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrYWNkbG5jaWhwd3VrenhkYWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI2NTQ0NzksImV4cCI6MjAxODIzMDQ3OX0.ddnYa_ZE2SAdBN3gDshavkVmbeC5hqwJ3mxt9OuHplA'
-  )
   const navigate = useNavigate()
+
   useEffect(() => {
     if (localStorage.getItem('Authenticated') === 'true') {
       navigate('/user')
@@ -73,17 +70,11 @@ export default function Register() {
     if (!allowExtraEmails) {
       return setMessage('Agree our terms and conditions')
     }
+
     try {
-      const { user, error } = await supabase.auth.signUp({
-        email: body.email,
-        password: body.password,
-        options: {
-          emailRedirectTo: 'http://localhost:3000/home',
-        },
-      })
-      if (error) {
-        throw error
-      }
+
+      // TODO: Implement Register API
+
       navigate('/login')
       toast.success('User registered successfully')
     } catch (error) {
