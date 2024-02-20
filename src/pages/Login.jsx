@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
-// MUI
+import { createClient } from '@supabase/supabase-js'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -14,19 +13,18 @@ import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
-
-// Icons
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-
 import { useNavigate, Link } from 'react-router-dom'
-import Copyright from '../components/Copyright'
-
-import axios from 'axios'
-import { toast } from 'sonner'
 import BackgroundAnimation from '../components/BackgroundAnimation'
+import Copyright from '../components/Copyright'
+import { toast } from 'sonner'
 
 export default function Login() {
+  const supabase = createClient(
+    'https://pkacdlncihpwukzxdacd.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrYWNkbG5jaWhwd3VrenhkYWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI2NTQ0NzksImV4cCI6MjAxODIzMDQ3OX0.ddnYa_ZE2SAdBN3gDshavkVmbeC5hqwJ3mxt9OuHplA'
+  )
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -43,29 +41,31 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
+    const email = data.get('email')
+    const password = data.get('password')
+    const user = {
+      email: email,
+      password: password,
+    }
     try {
-      const response = await axios.get(`/users?email=${data.get('email')}`)
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-      const userExists = response.data.some(
-        (user) =>
-          user.email === data.get('email') &&
-          user.password === data.get('password')
-      )
-
-      setMessage('')
-
-      if (userExists) {
-        localStorage.setItem('Authenticated', true)
-        localStorage.setItem('Credentials', JSON.stringify(response.data[0]))
-        navigate('/user')
-      } else {
-        setMessage('Invalid Username or Password')
+      if (error) {
+        throw error
       }
+
+      localStorage.setItem('Authenticated', true)
+      localStorage.setItem('Credentials', JSON.stringify(user))
+      navigate('/user')
     } catch (error) {
-      toast.error(String(error))
+      toast.error('Invalid email or password')
       console.error('Error:', error)
     }
   }
+
   return (
     <Box
       sx={{
