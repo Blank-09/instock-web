@@ -11,9 +11,7 @@ if (isDev) {
 }
 
 // Axios
-axios.defaults.baseURL = isDev
-  ? 'http://localhost:3001'
-  : 'https://instockaspirecoders.priyanshu-t.repl.co/'
+axios.defaults.baseURL = 'http://localhost:8080'
 
 const root = document.getElementById('root')
 
