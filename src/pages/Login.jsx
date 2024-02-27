@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -18,6 +18,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import BackgroundAnimation from '../components/BackgroundAnimation'
 import Copyright from '../components/Copyright'
 import { toast } from 'sonner'
+import axios from 'axios'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -44,14 +45,27 @@ export default function Login() {
     }
 
     try {
-      // TODO: Implement Login API
+      const res = await axios.post('/users/login', user)
+      console.log('Response:', res.data)
 
-      localStorage.setItem('Authenticated', true)
-      localStorage.setItem('Credentials', JSON.stringify(user))
+      if (res.status === 200) {
+        setMessage('')
+        localStorage.setItem('Authenticated', true)
+        localStorage.setItem('Credentials', JSON.stringify(res.data))
+        
+        navigate('/user')
+      }
 
-      navigate('/user')
     } catch (error) {
-      toast.error('Invalid email or password')
+      // unauthorized
+      if (error.response.status === 401) {
+        setMessage("Invalid password")
+      }
+
+      if (error.response.status === 404) {
+        setMessage('Invalid email')
+      }
+
       console.error('Error:', error)
     }
   }

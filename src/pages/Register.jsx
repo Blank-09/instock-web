@@ -73,7 +73,8 @@ export default function Register() {
 
     try {
 
-      // TODO: Implement Register API
+      const res = await axios.post('/users/register', body)
+      console.log(res.data)
 
       navigate('/login')
       toast.success('User registered successfully')
