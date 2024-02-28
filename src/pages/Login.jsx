@@ -45,7 +45,7 @@ export default function Login() {
     }
 
     try {
-      const res = await axios.post('/users/login', user)
+      const res = await axios.post('/admin/login', user)
       console.log('Response:', res.data)
 
       if (res.status === 200) {
@@ -54,6 +54,7 @@ export default function Login() {
         localStorage.setItem('Credentials', JSON.stringify(res.data))
         
         navigate('/user')
+        window.location.reload()
       }
 
     } catch (error) {

@@ -73,7 +73,7 @@ export default function Register() {
 
     try {
 
-      const res = await axios.post('/users/register', body)
+      const res = await axios.post('/admin/register', body)
       console.log(res.data)
 
       navigate('/login')
